@@ -1,15 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  Column,
-  ColumnProps,
-  getNextDirection,
-  icons,
-  initialSort
-} from 'components';
 import { darken, lighten } from 'polished';
 import { Children, ReactElement, ReactNode, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Direction, Sort } from 'types';
+
+import { Column, ColumnProps } from './Column';
+import { getNextDirection, icons, initialSort } from './TableUtils';
 
 interface Header {
   name?: string;
@@ -125,7 +121,7 @@ const StyledEmptyMessage = styled.tr`
   text-align: center;
 `;
 
-export const Table = <T,>(props: TableProps<T>) => {
+export const Table = <T extends any>(props: TableProps<T>) => {
   const {
     onSort,
     children,

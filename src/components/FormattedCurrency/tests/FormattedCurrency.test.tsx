@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react';
-import { FormattedCurrency } from 'components';
 import { render } from 'utils/testing';
+
+import { FormattedCurrency } from '../FormattedCurrency';
 
 describe('FormattedCurrency.test.tsx', () => {
   it('should render formatted value', () => {

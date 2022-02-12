@@ -1,6 +1,5 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ButtonProps } from 'components';
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
@@ -8,6 +7,8 @@ import {
   ReactNode
 } from 'react';
 import styled from 'styled-components';
+
+import { ButtonProps } from '../Button';
 
 export interface ActionButtonProps
   extends DetailedHTMLProps<

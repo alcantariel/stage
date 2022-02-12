@@ -1,7 +1,8 @@
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Table } from 'components';
 import { render } from 'utils/testing';
+
+import { Table } from '../Table';
 
 interface TableItem {
   id: string;
