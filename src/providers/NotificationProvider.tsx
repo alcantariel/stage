@@ -34,15 +34,13 @@ export const NotificationProvider = ({ children }: Props) => {
   return (
     <NotificationContext.Provider value={{ addNotification }}>
       <StyledNotificationsContainer>
-        {notifications.map((notification: NotificationValue, index: number) => {
-          return (
-            <Notification
-              key={`${notification.id}`}
-              value={notification}
-              onDestroy={() => removeNotification(index)}
-            />
-          );
-        })}
+        {notifications.map((notification: NotificationValue, index: number) => (
+          <Notification
+            value={notification}
+            key={`${notification.id}`}
+            onDestroy={() => removeNotification(index)}
+          />
+        ))}
       </StyledNotificationsContainer>
       {children}
     </NotificationContext.Provider>

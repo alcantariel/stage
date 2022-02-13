@@ -1,5 +1,6 @@
-import { getNextDirection } from 'components';
 import { Sort } from 'types';
+
+import { getNextDirection } from '../TableUtils';
 
 describe('TableUtils.test.tsx', () => {
   it('should return asc as default', () => {

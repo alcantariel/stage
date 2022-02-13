@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useIsMounted } from 'hooks';
 import { darken, lighten } from 'polished';
 import {
   DetailedHTMLProps,
@@ -33,7 +34,8 @@ interface StyledNotificationIconProps
   variant: NotificationType;
 }
 
-const NOTIFICATION_TIME = 3;
+export const NOTIFICATION_TIME = 3;
+export const NOTIFICATION_TIME_IN_MS = NOTIFICATION_TIME * 1000;
 
 export const StyledNotificationsContainer = styled.div`
   overflow: hidden auto;
@@ -116,10 +118,10 @@ const StyledNotificationCloseButton = styled.div`
 `;
 
 const icons: Record<NotificationType, JSX.Element> = {
-  info: <FontAwesomeIcon icon="info" />,
-  error: <FontAwesomeIcon icon="times" />,
-  success: <FontAwesomeIcon icon="check" />,
-  warning: <FontAwesomeIcon icon="exclamation" />
+  info: <FontAwesomeIcon icon="info" data-testid="info_icon" />,
+  error: <FontAwesomeIcon icon="times" data-testid="error_icon" />,
+  success: <FontAwesomeIcon icon="check" data-testid="success_icon" />,
+  warning: <FontAwesomeIcon icon="exclamation" data-testid="warning_icon" />
 };
 
 const variants: Record<NotificationType, string> = {
@@ -130,7 +132,7 @@ const variants: Record<NotificationType, string> = {
 };
 
 export const Notification = ({ value, onDestroy }: NotificationProps) => {
-  const mounted = useRef(false);
+  const mounted = useIsMounted();
   const timeout = useRef<NodeJS.Timeout>();
   const [mouseIn, setMouseIn] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -144,13 +146,11 @@ export const Notification = ({ value, onDestroy }: NotificationProps) => {
           timeout.current = setTimeout(() => {
             setVisible(false);
             resolve(true);
-          }, NOTIFICATION_TIME * 1000);
+          }, NOTIFICATION_TIME_IN_MS);
         });
       };
 
       await reset();
-
-      mounted.current = true;
     })();
 
     return () => {
@@ -159,7 +159,7 @@ export const Notification = ({ value, onDestroy }: NotificationProps) => {
   }, []);
 
   useEffect(() => {
-    if (mounted.current && mouseIn) {
+    if (mounted && mouseIn) {
       onDestroy();
     }
   }, [mouseIn, onDestroy]);
@@ -174,12 +174,18 @@ export const Notification = ({ value, onDestroy }: NotificationProps) => {
       variant={value.type}
       onMouseEnter={() => setMouseIn(true)}
       onMouseLeave={() => setMouseIn(false)}
+      data-testid={`${value.id}_notification_container`}
     >
       <StyledNotificationIcon variant={value.type}>
         {icons[value.type]}
       </StyledNotificationIcon>
-      <StyledNotificationText>{value.message}</StyledNotificationText>
-      <StyledNotificationCloseButton onClick={close}>
+      <StyledNotificationText data-testid={`${value.id}_notification_message`}>
+        {value.message}
+      </StyledNotificationText>
+      <StyledNotificationCloseButton
+        onClick={close}
+        data-testid={`${value.id}_close_notification_icon`}
+      >
         <FontAwesomeIcon icon="times" />
       </StyledNotificationCloseButton>
     </StyledNotificationContainer>
