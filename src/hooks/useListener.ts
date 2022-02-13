@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
-type Target = HTMLElement | Window | Document;
-type EventName = keyof WindowEventMap;
-type EventListener = (event: Event) => void;
+export type Target = HTMLElement | Window | Document;
+export type EventName = keyof WindowEventMap;
+export type EventListener = (event: Event) => void;
 
 export const useListener = (
   target: Target,

@@ -6,3 +6,16 @@ import '@testing-library/jest-dom';
 
 // fontawesome icons
 import './icons/IconsLibrary';
+
+// window size (height and size)
+Object.defineProperty(window, 'innerHeight', {
+  writable: true,
+  configurable: true,
+  value: 800
+});
+
+Object.defineProperty(window, 'innerWidth', {
+  writable: true,
+  configurable: true,
+  value: 600
+});

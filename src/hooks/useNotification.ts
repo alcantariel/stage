@@ -10,8 +10,11 @@ export const useNotification = (): UseNotificationReturn => {
 
   const showNotification = (
     notification: Omit<NotificationValue, 'id'>
-  ): void => {
-    addNotification({ ...notification, id: v4() });
+  ): string => {
+    const id = v4();
+    addNotification({ ...notification, id });
+
+    return id;
   };
 
   return showNotification;
