@@ -73,7 +73,7 @@ export const ActionButton = (props: ActionButtonProps) => {
   return (
     <StyledActionButton onClick={onClick} tabIndex={-1} {...rest}>
       <p>{children}</p>
-      <FontAwesomeIcon icon={icon} />
+      <FontAwesomeIcon icon={icon} data-testid={`action_button_icon_${icon}`} />
     </StyledActionButton>
   );
 };
