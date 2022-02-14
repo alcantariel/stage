@@ -47,4 +47,22 @@ describe('Button.test.tsx', () => {
 
     expect(onClickFn).not.toHaveBeenCalled();
   });
+
+  it('shouldnt dispatch click when is disabled', () => {
+    const onClickFn = jest.fn();
+
+    render(
+      <Button loading onClick={onClickFn} disabled>
+        Click Me
+      </Button>
+    );
+
+    const btn = screen.getByTestId('btn-Click Me');
+    expect(btn).toBeInTheDocument();
+    expect(btn).toBeDisabled();
+
+    fireEvent.click(btn);
+
+    expect(onClickFn).not.toHaveBeenCalled();
+  });
 });
