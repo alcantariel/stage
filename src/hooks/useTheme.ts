@@ -3,9 +3,9 @@ import {
   changeLocalStorageTheme,
   darkTheme,
   getLocalStorageTheme,
-  lightTheme,
-  Theme
+  lightTheme
 } from 'theme';
+import { Theme } from 'types';
 
 interface UseThemeReturn {
   theme: Theme;

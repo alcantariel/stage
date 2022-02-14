@@ -1,4 +1,5 @@
-import { darkTheme, lightTheme, Theme, ThemeOptions } from 'theme';
+import { darkTheme, lightTheme } from 'theme';
+import { Theme, ThemeOptions } from 'types';
 
 export const THEME_KEY = 'stage_theme_id';
 

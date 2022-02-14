@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { defaultLocale, locale } from 'utils';
+import { defaultLocale, getLocale } from 'utils';
 
 const Home = lazy(() => import('pages/Home/Home'));
 
@@ -12,7 +12,7 @@ const App = () => {
   const { theme } = useTheme();
 
   return (
-    <IntlProvider locale={locale} defaultLocale={defaultLocale}>
+    <IntlProvider locale={getLocale()} defaultLocale={defaultLocale}>
       <ThemeProvider theme={theme}>
         <NotificationProvider>
           <BrowserRouter>

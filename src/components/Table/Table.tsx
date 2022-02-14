@@ -98,19 +98,13 @@ const StyledTable = styled.table`
       }
 
       :nth-child(even) {
-        background-color: ${props => {
-          return props.theme.themeId === 'light_theme'
-            ? darken('.05', props.theme.backgroundColor)
-            : props.theme.primary;
-        }};
+        background-color: ${props =>
+          darken('.05', props.theme.backgroundColor)}};
       }
 
       :hover {
-        background-color: ${props => {
-          return props.theme.themeId === 'light_theme'
-            ? darken('.1', props.theme.backgroundColor)
-            : lighten('.05', props.theme.primary);
-        }};
+        background-color: ${props =>
+          darken('.1', props.theme.backgroundColor)}};
         transition: all 0.2s linear;
       }
     }
@@ -124,8 +118,8 @@ const StyledEmptyMessage = styled.tr`
 export const Table = <T extends any>(props: TableProps<T>) => {
   const {
     onSort,
+    values,
     children,
-    values = [],
     keyExtractor,
     defaultSort = initialSort,
     emptyMessage = 'Table is empty'

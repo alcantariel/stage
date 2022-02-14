@@ -8,10 +8,8 @@ type UseNotificationReturn = (notification: NotificationValue) => void;
 export const useNotification = (): UseNotificationReturn => {
   const { addNotification } = useContext(NotificationContext);
 
-  const showNotification = (
-    notification: Omit<NotificationValue, 'id'>
-  ): string => {
-    const id = v4();
+  const showNotification = (notification: NotificationValue): string => {
+    const id = notification.id || v4();
     addNotification({ ...notification, id });
 
     return id;

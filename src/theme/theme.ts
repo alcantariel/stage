@@ -1,4 +1,4 @@
-import { Theme } from 'theme';
+import { Theme } from 'types';
 
 export const commonTheme = {
   defaultBorderColor: '#979797',
@@ -12,14 +12,6 @@ export const commonTheme = {
   infoColor: '#bbc'
 } as const;
 
-export const darkTheme: Theme = {
-  ...commonTheme,
-  themeId: 'dark_theme',
-  backgroundColor: '#010101',
-  shadowColor: 'rgba(0, 0, 0, 0)',
-  textColor: '#fff'
-};
-
 export const lightTheme: Theme = {
   ...commonTheme,
   themeId: 'light_theme',
@@ -27,3 +19,13 @@ export const lightTheme: Theme = {
   shadowColor: 'rgba(232, 232, 232, .5)',
   textColor: '#222331'
 };
+
+export const darkTheme: Theme = {
+  ...commonTheme,
+  ...lightTheme, // remove after define dark theme colors
+  shadowColor: 'rgba(0, 0, 0, 0)',
+  themeId: 'dark_theme'
+};
+
+// backgroundColor: '#010101'
+// textColor: '#fff'
