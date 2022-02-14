@@ -107,7 +107,7 @@ describe('Notification.test.tsx', () => {
     expect(onDestroyFn).not.toHaveBeenCalled();
   });
 
-  it('should keep notification rendered even if 3 seconds has passed because mouse is over notification', async () => {
+  it('should keep notification rendered even if 3 seconds has passed because mouse is over notification', () => {
     const onDestroyFn = jest.fn();
     const value: NotificationValue = {
       id: '1',
@@ -131,7 +131,7 @@ describe('Notification.test.tsx', () => {
     expect(onDestroyFn).toHaveBeenCalled();
   });
 
-  it('should remove notification when 3 seconds has passed and mouse in and out', async () => {
+  it('should remove notification when 3 seconds has passed and mouse in and out', () => {
     const onDestroyFn = jest.fn();
     const value: NotificationValue = {
       id: '1',
@@ -161,7 +161,7 @@ describe('Notification.test.tsx', () => {
     expect(onDestroyFn).toHaveBeenCalled();
   });
 
-  it('should close notification when click on close icon', async () => {
+  it('should close notification when click on close icon', () => {
     const onDestroyFn = jest.fn();
     const value: NotificationValue = {
       id: '1',
