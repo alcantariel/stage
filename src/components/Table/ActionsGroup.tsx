@@ -1,9 +1,14 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import {
+  DetailedHTMLProps,
+  ForwardedRef,
+  forwardRef,
+  HTMLAttributes,
+  ReactNode
+} from 'react';
 import styled from 'styled-components';
 
 export interface ActionsGroupProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  ref?: any;
   children: ReactNode;
 }
 
@@ -15,6 +20,15 @@ const StyledActionsGroup = styled.div`
   padding: 3px 8px 3px 8px;
 `;
 
-export const ActionsGroup = ({ children, ...rest }: ActionsGroupProps) => {
-  return <StyledActionsGroup {...rest}>{children}</StyledActionsGroup>;
-};
+export const ActionsGroup = forwardRef(
+  (props: ActionsGroupProps, ref: ForwardedRef<HTMLDivElement>) => {
+    const { children, ...rest } = props;
+    return (
+      <StyledActionsGroup {...rest} ref={ref}>
+        {children}
+      </StyledActionsGroup>
+    );
+  }
+);
+
+ActionsGroup.displayName = 'ActionsGroup';

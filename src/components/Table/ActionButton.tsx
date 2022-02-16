@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
+  ForwardedRef,
+  forwardRef,
   MouseEvent,
   ReactNode
 } from 'react';
@@ -67,13 +69,20 @@ const StyledActionButton = styled.button<ButtonProps>`
   }
 `;
 
-export const ActionButton = (props: ActionButtonProps) => {
-  const { children, icon, onClick, ...rest } = props;
+export const ActionButton = forwardRef(
+  (props: ActionButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+    const { children, icon, onClick, ...rest } = props;
 
-  return (
-    <StyledActionButton onClick={onClick} tabIndex={-1} {...rest}>
-      <p>{children}</p>
-      <FontAwesomeIcon icon={icon} data-testid={`action_button_icon_${icon}`} />
-    </StyledActionButton>
-  );
-};
+    return (
+      <StyledActionButton {...rest} ref={ref} onClick={onClick} tabIndex={-1}>
+        <p>{children}</p>
+        <FontAwesomeIcon
+          icon={icon}
+          data-testid={`action_button_icon_${icon}`}
+        />
+      </StyledActionButton>
+    );
+  }
+);
+
+ActionButton.displayName = 'ActionButton';

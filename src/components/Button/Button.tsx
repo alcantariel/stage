@@ -1,6 +1,12 @@
 import { Spinner } from 'components';
 import { lighten } from 'polished';
-import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEvent } from 'react';
+import {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  ForwardedRef,
+  forwardRef,
+  MouseEvent
+} from 'react';
 import styled from 'styled-components';
 import { commonTheme } from 'theme';
 
@@ -11,7 +17,6 @@ export interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  ref?: any;
   width?: number;
   loading?: boolean;
   variant?: ButtonVariant;
@@ -51,33 +56,38 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
-export const Button = (props: ButtonProps) => {
-  const {
-    onClick,
-    children,
-    type = 'button',
-    loading = false,
-    variant = 'primary',
-    ...rest
-  } = props;
+export const Button = forwardRef(
+  (props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+    const {
+      onClick,
+      children,
+      type = 'button',
+      loading = false,
+      variant = 'primary',
+      ...rest
+    } = props;
 
-  const handleClick = (
-    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
-  ): void => {
-    if (!loading) {
-      return onClick?.(event);
-    }
-  };
+    const handleClick = (
+      event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+    ): void => {
+      if (!loading) {
+        return onClick?.(event);
+      }
+    };
 
-  return (
-    <StyledButton
-      {...rest}
-      type={type}
-      variant={variant}
-      onClick={handleClick}
-      data-testid={`btn-${children}`}
-    >
-      {loading ? <Spinner data-testid="btn-spinner" /> : children}
-    </StyledButton>
-  );
-};
+    return (
+      <StyledButton
+        {...rest}
+        ref={ref}
+        type={type}
+        variant={variant}
+        onClick={handleClick}
+        data-testid={`btn-${children}`}
+      >
+        {loading ? <Spinner data-testid="btn-spinner" /> : children}
+      </StyledButton>
+    );
+  }
+);
+
+Button.displayName = 'Button';
