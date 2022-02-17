@@ -1,14 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { darken, lighten } from 'polished';
-import {
-  Children,
-  ForwardedRef,
-  forwardRef,
-  ReactElement,
-  ReactNode,
-  useMemo,
-  useState
-} from 'react';
+import { Children, ReactElement, ReactNode, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Direction, Sort } from 'types';
 
@@ -123,10 +115,7 @@ const StyledEmptyMessage = styled.tr`
   text-align: center;
 `;
 
-const TableInner = <T extends any>(
-  props: TableProps<T>,
-  ref: ForwardedRef<HTMLTableElement>
-) => {
+export const Table = <T extends any>(props: TableProps<T>) => {
   const {
     onSort,
     values,
@@ -167,7 +156,7 @@ const TableInner = <T extends any>(
   };
 
   return (
-    <StyledTable ref={ref}>
+    <StyledTable>
       <thead>
         <tr>
           {ths.map((th: Header, index: number) => {
@@ -221,6 +210,4 @@ const TableInner = <T extends any>(
   );
 };
 
-TableInner.Column = Column;
-
-export const Table = forwardRef(TableInner);
+Table.Column = Column;
