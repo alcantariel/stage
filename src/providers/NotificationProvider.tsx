@@ -13,9 +13,11 @@ export interface NotificationContextProps {
   addNotification: (notification: NotificationValue) => void;
 }
 
-export const NotificationContext = createContext({
+export const initialNotificationContext: NotificationContextProps = {
   addNotification: (notification: NotificationValue) => {}
-});
+};
+
+export const NotificationContext = createContext(initialNotificationContext);
 
 export const NotificationProvider = ({ children }: Props) => {
   const [notifications, setNotifications] = useState<NotificationValue[]>([]);
