@@ -28,6 +28,7 @@
       "warn",
       { "vars": "all", "args": "none", "ignoreRestSiblings": false }
     ],
+    "no-extra-boolean-cast": "off",
     "quotes": ["error", "single"],
     "react/react-in-jsx-scope": "off",
     "semi": ["error", "always"]

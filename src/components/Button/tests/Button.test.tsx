@@ -52,12 +52,12 @@ describe('Button.test.tsx', () => {
     const onClickFn = jest.fn();
 
     render(
-      <Button loading onClick={onClickFn} disabled>
+      <Button id="test" loading onClick={onClickFn} disabled>
         Click Me
       </Button>
     );
 
-    const btn = screen.getByTestId('btn-Click Me');
+    const btn = screen.getByTestId('btn-test');
     expect(btn).toBeInTheDocument();
     expect(btn).toBeDisabled();
 

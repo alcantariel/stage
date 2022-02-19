@@ -17,9 +17,9 @@ export interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  width?: number;
   loading?: boolean;
   variant?: ButtonVariant;
+  width?: number;
 }
 
 const variants = {
@@ -82,7 +82,7 @@ export const Button = forwardRef(
         type={type}
         variant={variant}
         onClick={handleClick}
-        data-testid={`btn-${children}`}
+        data-testid={`btn-${rest.id || children}`}
       >
         {loading ? <Spinner data-testid="btn-spinner" /> : children}
       </StyledButton>
