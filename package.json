@@ -57,11 +57,20 @@
   "jest": {
     "collectCoverageFrom": [
       "**/*.{js,jsx,ts,tsx}",
+      "!**/*.d.ts",
       "!**/node_modules/**",
       "!<rootDir>/src/reportWebVitals.ts",
       "!<rootDir>/src/App.tsx",
       "!<rootDir>/src/index.tsx"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
   },
   "browserslist": {
     "production": [
