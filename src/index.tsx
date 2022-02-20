@@ -1,4 +1,4 @@
-import './assets/style/style.css';
+import './index.css';
 import 'icons/IconsLibrary';
 
 import { StrictMode } from 'react';

@@ -41,7 +41,6 @@ const StyledInput = styled.input<InputProps>`
     ${props =>
       !!props.error ? props.theme.errorColor : props.theme.defaultBorderColor};
   border-radius: 4px;
-  box-sizing: border-box;
   padding: 8px;
   width: 100%;
 

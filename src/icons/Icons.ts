@@ -12,5 +12,9 @@ export {
   faPlus,
   faSort,
   faSortUp,
-  faSortDown
+  faSortDown,
+  faAngleLeft,
+  faAngleRight,
+  faAngleDoubleLeft,
+  faAngleDoubleRight
 } from '@fortawesome/free-solid-svg-icons';

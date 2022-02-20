@@ -75,7 +75,7 @@ const StyledNotificationContainer = styled.div<StyledNotificationContainerProps>
   animation-fill-mode: forwards;
   background-color: ${props => lighten('.2', variants[props.variant])};
   border-color: ${props => variants[props.variant]};
-  border-radius: 4px;
+  border-radius: 8px;
   border-style: solid;
   box-shadow: 0 4px 4px 0 ${props => darken('.1', props.theme.shadowColor)};
   color: ${props => darken('.3', variants[props.variant])};
