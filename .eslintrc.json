@@ -29,7 +29,13 @@
       { "vars": "all", "args": "none", "ignoreRestSiblings": false }
     ],
     "no-extra-boolean-cast": "off",
-    "quotes": ["error", "single"],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
     "react/react-in-jsx-scope": "off",
     "semi": ["error", "always"]
   }

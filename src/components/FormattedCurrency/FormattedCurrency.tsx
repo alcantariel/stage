@@ -1,14 +1,16 @@
-import { defaultLocale } from 'utils';
+import { currencyByLocale, getLocale } from 'utils';
 
 export interface FormattedCurrencyProps extends Intl.NumberFormatOptions {
   value: number;
 }
 
 export const FormattedCurrency = (props: FormattedCurrencyProps) => {
-  const formattedNumber = new Intl.NumberFormat(defaultLocale, {
+  const locale = getLocale();
+
+  const formattedNumber = new Intl.NumberFormat(locale, {
     ...props,
     style: 'currency',
-    currency: 'BRL' // get currency by locale
+    currency: currencyByLocale[locale]
   }).format(props.value);
 
   return <>{formattedNumber}</>;
