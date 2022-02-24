@@ -6,7 +6,7 @@ export interface ErrorTextProps
   children: ReactNode;
 }
 
-const StyledSpan = styled.p`
+const StyledParagraph = styled.p`
   color: ${props => props.theme.errorColor};
   font-size: 12px;
   margin-top: 2px;
@@ -14,8 +14,8 @@ const StyledSpan = styled.p`
 
 export const ErrorText = (props: ErrorTextProps) => {
   return (
-    <StyledSpan data-testid={`error_text_${props.id || props.children}`}>
+    <StyledParagraph data-testid={`error_text_${props.id || props.children}`}>
       {props.children}
-    </StyledSpan>
+    </StyledParagraph>
   );
 };
