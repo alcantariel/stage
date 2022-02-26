@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledInput } from 'components';
 import { darken, lighten } from 'polished';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState, KeyboardEvent } from 'react';
 import styled from 'styled-components';
 import { Page, Pageable } from 'types';
-import { isNumber } from 'utils';
+import { isNumber, KeyboardCodeUtils } from 'utils';
 
 const PaginationContainer = styled.div`
   align-items: center;
@@ -73,89 +73,133 @@ export interface PaginationProps {
 
 interface InnerPage {
   isEditing: boolean;
-  value: number;
+  number: number;
+  size: number;
 }
 
 const pageSizeOptions = [10, 20, 30, 40, 50, 100];
 
 export const Pagination = (props: PaginationProps) => {
   const { page, onPageChange } = props;
+  const [innerPageNumber, setInnerPageNumber] = useState(page.number);
   const [innerPage, setInnerPage] = useState<InnerPage>({
     isEditing: false,
-    value: page.number
+    number: page.number,
+    size: page.size
   });
 
-  const handlePageChange = (operation: number): void => {
-    const value: number = getFinalValue(innerPage.value + operation);
+  useEffect(() => {
+    onPageChange(innerPage);
+  }, [innerPage.number, innerPage.size]);
 
-    onPageChange({ number: value, size: page.size });
+  const handleAngleChange = (operation: number): void => {
+    const value: number = getNewPageNumber(innerPage.number + operation);
+
     setInnerPage(prev => {
       return {
         ...prev,
-        value
+        number: value
       };
     });
   };
 
-  const handleCustomPageChange = (
+  const handlePageNumberChange = (
     event: ChangeEvent<HTMLInputElement>
   ): void => {
-    const value: number = getFinalValue(+event.target.value);
+    const value: number = getNewPageNumber(+event.target.value);
+    setInnerPageNumber(prev => (isNumber(value) ? value : prev));
+  };
 
+  const handlePageSizeChange = (
+    event: ChangeEvent<HTMLSelectElement>
+  ): void => {
     setInnerPage(prev => {
       return {
         ...prev,
-        value: isNumber(value) ? value : prev.value
+        size: +event.target.value
       };
     });
   };
 
-  const handleCustomPageBlur = (
+  const handlePageNumberBlur = (
     event: React.FocusEvent<HTMLInputElement>
   ): void => {
-    setInnerPage({
-      isEditing: false,
-      value: getFinalValue(+event.target.value)
+    setInnerPage(prev => {
+      return {
+        ...prev,
+        isEditing: false,
+        number: getNewPageNumber(+event.target.value)
+      };
     });
   };
 
-  const getFinalValue = (value: number): number => {
-    if (!isNumber(value)) {
-      return innerPage.value;
+  const handlePageNumberKeyDown = (
+    event: KeyboardEvent<HTMLInputElement>
+  ): void => {
+    if (KeyboardCodeUtils.ENTER === event.code) {
+      setInnerPage(prev => {
+        return {
+          ...prev,
+          number: innerPageNumber
+        };
+      });
+    }
+  };
+
+  const getNewPageNumber = (number: number): number => {
+    if (!isNumber(number)) {
+      return innerPage.number;
     }
 
-    if (value < FIRST_PAGE) {
+    if (number < FIRST_PAGE) {
       return FIRST_PAGE;
     }
 
-    if (value > page.totalPages) {
+    if (number > page.totalPages) {
       return page.totalPages;
     }
 
-    return value;
+    return number;
   };
 
   return (
     <PaginationContainer>
-      <PageSizeSelector defaultValue={page.size}>
+      <PageSizeSelector
+        name="size"
+        defaultValue={page.size}
+        onChange={handlePageSizeChange}
+        data-testid="pageselector_options"
+      >
         {pageSizeOptions.map(size => (
-          <option key={size} value={size}>
+          <option
+            key={size}
+            value={size}
+            data-testid={`pageselection_option_${size}`}
+          >
             {size}
           </option>
         ))}
       </PageSizeSelector>
       <PageSizeDescription>itens</PageSizeDescription>
-      <PaginationItem onClick={() => handlePageChange(SUB_OPERATION)}>
+      <PaginationItem
+        data-testid="angle_left"
+        onClick={() => handleAngleChange(SUB_OPERATION)}
+      >
         <FontAwesomeIcon icon="angle-left" />
       </PaginationItem>
       <PaginationInput
-        name="value"
-        value={innerPage.value}
-        onBlur={handleCustomPageBlur}
-        onChange={handleCustomPageChange}
+        name="number"
+        value={innerPageNumber}
+        data-testid="page_input"
+        onBlur={handlePageNumberBlur}
+        onChange={handlePageNumberChange}
+        onKeyDown={handlePageNumberKeyDown}
       />
       de {page.totalPages}
-      <PaginationItem onClick={() => handlePageChange(SUM_OPERATION)}>
+      <PaginationItem
+        data-testid="angle_right"
+        onClick={() => handleAngleChange(SUM_OPERATION)}
+      >
         <FontAwesomeIcon icon="angle-right" />
       </PaginationItem>
     </PaginationContainer>
