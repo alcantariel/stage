@@ -72,7 +72,6 @@ export interface PaginationProps {
 }
 
 interface InnerPage {
-  isEditing: boolean;
   number: number;
   size: number;
 }
@@ -83,7 +82,6 @@ export const Pagination = (props: PaginationProps) => {
   const { page, onPageChange } = props;
   const [innerPageNumber, setInnerPageNumber] = useState(page.number);
   const [innerPage, setInnerPage] = useState<InnerPage>({
-    isEditing: false,
     number: page.number,
     size: page.size
   });
@@ -93,8 +91,9 @@ export const Pagination = (props: PaginationProps) => {
   }, [innerPage.number, innerPage.size]);
 
   const handleAngleChange = (operation: number): void => {
-    const value: number = getNewPageNumber(innerPage.number + operation);
+    const value: number = getNewPageNumber(innerPageNumber + operation);
 
+    setInnerPageNumber(value);
     setInnerPage(prev => {
       return {
         ...prev,
@@ -106,8 +105,7 @@ export const Pagination = (props: PaginationProps) => {
   const handlePageNumberChange = (
     event: ChangeEvent<HTMLInputElement>
   ): void => {
-    const value: number = getNewPageNumber(+event.target.value);
-    setInnerPageNumber(prev => (isNumber(value) ? value : prev));
+    setInnerPageNumber(getNewPageNumber(+event.target.value));
   };
 
   const handlePageSizeChange = (
@@ -127,7 +125,6 @@ export const Pagination = (props: PaginationProps) => {
     setInnerPage(prev => {
       return {
         ...prev,
-        isEditing: false,
         number: getNewPageNumber(+event.target.value)
       };
     });
@@ -148,7 +145,7 @@ export const Pagination = (props: PaginationProps) => {
 
   const getNewPageNumber = (number: number): number => {
     if (!isNumber(number)) {
-      return innerPage.number;
+      return innerPageNumber;
     }
 
     if (number < FIRST_PAGE) {
