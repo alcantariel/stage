@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { ChangeEvent } from 'react';
 import { render } from 'utils/testing';
@@ -27,7 +27,7 @@ describe('Input.test.tsx', () => {
 
     userEvent.click(screen.getByTestId('input_name'));
 
-    screen.getByTestId('input_name').blur();
+    fireEvent.blur(screen.getByTestId('input_name'));
 
     expect(screen.getByTestId('error_text_name')).toBeInTheDocument();
     expect(screen.getByTestId('error_text_name')).toHaveTextContent(
@@ -59,7 +59,7 @@ describe('Input.test.tsx', () => {
     render(<Input name="name" label="Name" onBlur={onBlur} />);
 
     userEvent.click(screen.getByTestId('input_name'));
-    screen.getByTestId('input_name').blur();
+    fireEvent.blur(screen.getByTestId('input_name'));
 
     expect(onBlur).toHaveBeenCalled();
   });
