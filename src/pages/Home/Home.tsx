@@ -9,7 +9,7 @@ const pageable: Pageable = {
   numberOfElements: 20,
   size: 20,
   totalElements: 40,
-  totalPages: 3
+  totalPages: 25
 };
 
 const Home = () => {

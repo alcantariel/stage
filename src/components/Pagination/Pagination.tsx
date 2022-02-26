@@ -62,6 +62,10 @@ const PageSizeDescription = styled.p`
   margin: 0 220px 0 8px;
 `;
 
+const FIRST_PAGE = 1;
+const SUB_OPERATION = -1;
+const SUM_OPERATION = +1;
+
 export interface PaginationProps {
   page: Pageable;
   onPageChange: (page: Page) => void;
@@ -81,16 +85,14 @@ export const Pagination = (props: PaginationProps) => {
     value: page.number
   });
 
-  const handlePageChange = (next: number): void => {
-    if (next === innerPage.value || next < 1 || next > page.totalPages) {
-      return;
-    }
+  const handlePageChange = (operation: number): void => {
+    const value: number = getFinalValue(innerPage.value + operation);
 
-    onPageChange({ number: next, size: page.size });
+    onPageChange({ number: value, size: page.size });
     setInnerPage(prev => {
       return {
         ...prev,
-        value: next
+        value
       };
     });
   };
@@ -98,14 +100,12 @@ export const Pagination = (props: PaginationProps) => {
   const handleCustomPageChange = (
     event: ChangeEvent<HTMLInputElement>
   ): void => {
-    const { value } = event.target;
-
-    const numberValue: number = +value;
+    const value: number = getFinalValue(+event.target.value);
 
     setInnerPage(prev => {
       return {
         ...prev,
-        value: isNumber(numberValue) ? numberValue : prev.value
+        value: isNumber(value) ? value : prev.value
       };
     });
   };
@@ -113,22 +113,26 @@ export const Pagination = (props: PaginationProps) => {
   const handleCustomPageBlur = (
     event: React.FocusEvent<HTMLInputElement>
   ): void => {
-    const { value } = event.target;
+    setInnerPage({
+      isEditing: false,
+      value: getFinalValue(+event.target.value)
+    });
+  };
 
-    let finalValue: number;
-    const numberValue: number = +value;
-
-    if (!isNumber(numberValue)) {
-      finalValue = innerPage.value;
-    } else if (numberValue < 1) {
-      finalValue = 1;
-    } else if (numberValue > page.totalPages) {
-      finalValue = page.totalPages;
-    } else {
-      finalValue = numberValue;
+  const getFinalValue = (value: number): number => {
+    if (!isNumber(value)) {
+      return innerPage.value;
     }
 
-    setInnerPage({ isEditing: false, value: finalValue });
+    if (value < FIRST_PAGE) {
+      return FIRST_PAGE;
+    }
+
+    if (value > page.totalPages) {
+      return page.totalPages;
+    }
+
+    return value;
   };
 
   return (
@@ -141,19 +145,17 @@ export const Pagination = (props: PaginationProps) => {
         ))}
       </PageSizeSelector>
       <PageSizeDescription>itens</PageSizeDescription>
-      <PaginationItem onClick={() => handlePageChange(innerPage.value - 1)}>
+      <PaginationItem onClick={() => handlePageChange(SUB_OPERATION)}>
         <FontAwesomeIcon icon="angle-left" />
       </PaginationItem>
       <PaginationInput
-        autoFocus
         name="value"
         value={innerPage.value}
         onBlur={handleCustomPageBlur}
         onChange={handleCustomPageChange}
-        title={innerPage.value?.toString()}
       />
       de {page.totalPages}
-      <PaginationItem onClick={() => handlePageChange(innerPage.value + 1)}>
+      <PaginationItem onClick={() => handlePageChange(SUM_OPERATION)}>
         <FontAwesomeIcon icon="angle-right" />
       </PaginationItem>
     </PaginationContainer>

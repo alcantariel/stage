@@ -75,10 +75,9 @@ describe('Home.test.tsx', () => {
           <input
             class="sc-hKwDye sc-kDTinF cRqYRW iNnRzQ"
             name="value"
-            title="1"
             value="1"
           />
-          de 3
+          de 25
           <div
             class="sc-jrQzAO gitmJa"
           >
