@@ -62,10 +62,6 @@ const PageSizeDescription = styled.p`
   margin: 0 220px 0 8px;
 `;
 
-const FIRST_PAGE = 1;
-const SUB_OPERATION = -1;
-const SUM_OPERATION = +1;
-
 export interface PaginationProps {
   page: Pageable;
   onPageChange: (page: Page) => void;
@@ -76,11 +72,14 @@ interface InnerPage {
   size: number;
 }
 
+const FIRST_PAGE = 1;
+const SUB_OPERATION = -1;
+const SUM_OPERATION = +1;
 const pageSizeOptions = [10, 20, 30, 40, 50, 100];
 
 export const Pagination = (props: PaginationProps) => {
   const { page, onPageChange } = props;
-  const [innerPageNumber, setInnerPageNumber] = useState(page.number);
+  const [currentPage, setCurrentPage] = useState(page.number);
   const [innerPage, setInnerPage] = useState<InnerPage>({
     number: page.number,
     size: page.size
@@ -91,9 +90,9 @@ export const Pagination = (props: PaginationProps) => {
   }, [innerPage.number, innerPage.size]);
 
   const handleAngleChange = (operation: number): void => {
-    const value: number = getNewPageNumber(innerPageNumber + operation);
+    const value: number = getNewPageNumber(currentPage + operation);
 
-    setInnerPageNumber(value);
+    setCurrentPage(value);
     setInnerPage(prev => {
       return {
         ...prev,
@@ -105,7 +104,7 @@ export const Pagination = (props: PaginationProps) => {
   const handlePageNumberChange = (
     event: ChangeEvent<HTMLInputElement>
   ): void => {
-    setInnerPageNumber(getNewPageNumber(+event.target.value));
+    setCurrentPage(getNewPageNumber(+event.target.value));
   };
 
   const handlePageSizeChange = (
@@ -137,7 +136,7 @@ export const Pagination = (props: PaginationProps) => {
       setInnerPage(prev => {
         return {
           ...prev,
-          number: innerPageNumber
+          number: currentPage
         };
       });
     }
@@ -145,7 +144,7 @@ export const Pagination = (props: PaginationProps) => {
 
   const getNewPageNumber = (number: number): number => {
     if (!isNumber(number)) {
-      return innerPageNumber;
+      return currentPage;
     }
 
     if (number < FIRST_PAGE) {
@@ -186,7 +185,7 @@ export const Pagination = (props: PaginationProps) => {
       </PaginationItem>
       <PaginationInput
         name="number"
-        value={innerPageNumber}
+        value={currentPage}
         data-testid="page_input"
         onBlur={handlePageNumberBlur}
         onChange={handlePageNumberChange}
