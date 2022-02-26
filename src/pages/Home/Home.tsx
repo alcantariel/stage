@@ -27,7 +27,7 @@ const Home = () => {
     });
   };
 
-  return <Pagination page={pagination} onChangePage={handlePagination} />;
+  return <Pagination page={pagination} onPageChange={handlePagination} />;
 };
 
 export { Home, Home as default };

@@ -36,7 +36,7 @@ const StyledLabel = styled.label`
   margin-bottom: 6px;
 `;
 
-const StyledInput = styled.input<InputProps>`
+export const StyledInput = styled.input<InputProps>`
   border: 1px solid
     ${props =>
       !!props.error ? props.theme.errorColor : props.theme.defaultBorderColor};
