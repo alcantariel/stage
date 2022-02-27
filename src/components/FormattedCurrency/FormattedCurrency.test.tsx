@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { render } from 'utils/testing';
 
-import { FormattedCurrency } from '../FormattedCurrency';
+import { FormattedCurrency } from './FormattedCurrency';
 
 const languageGetter = jest.spyOn(window.navigator, 'language', 'get');
 

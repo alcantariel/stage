@@ -1,6 +1,6 @@
 import { render } from 'utils/testing';
 
-import { Home } from '../Home';
+import { Home } from './Home';
 
 describe('Home.test.tsx', () => {
   it('snapshot', () => {
@@ -8,17 +8,17 @@ describe('Home.test.tsx', () => {
     expect(asFragment()).toMatchInlineSnapshot(`
       <DocumentFragment>
         <div
-          class="sc-jRQBWg fNxwSX"
+          class="sc-eCImPb fHxykI"
         />
         <label
-          class="sc-eCImPb dWbTAt"
+          class="sc-hKwDye dPestB"
           data-testid="label_select_name"
           for="name"
         >
           Name
         </label>
         <select
-          class="sc-hKwDye fNAzLj"
+          class="sc-egiyK iXoKsG"
           data-testid="select_name"
           id="name"
           name="name"
@@ -43,7 +43,7 @@ describe('Home.test.tsx', () => {
           </option>
         </select>
         <label
-          class="sc-eCImPb dWbTAt"
+          class="sc-hKwDye dPestB"
           data-testid="label_Name"
         >
           Name
@@ -54,13 +54,13 @@ describe('Home.test.tsx', () => {
           name="name"
         />
         <div
-          class="sc-jrQzAO KTJNt"
+          class="sc-pVTFL eOVrMc"
         >
           <div
-            class="sc-crHmcD bhHcQR"
+            class="sc-iqseJM gcUBWz"
           >
             <select
-              class="sc-hKwDye fNAzLj sc-egiyK ebaeuZ"
+              class="sc-egiyK iXoKsG sc-crHmcD llFSvL"
               data-testid="pageselector_options"
               name="size"
             >
@@ -107,7 +107,7 @@ describe('Home.test.tsx', () => {
             </span>
           </div>
           <div
-            class="sc-kDTinF fJVQxc"
+            class="sc-jrQzAO hiyfKj"
             data-testid="angle_left"
           >
             <svg
@@ -127,7 +127,7 @@ describe('Home.test.tsx', () => {
             </svg>
           </div>
           <input
-            class="sc-dkPtRN dOORyL sc-iqseJM kdPAUf"
+            class="sc-dkPtRN dOORyL sc-kDTinF iNnRzQ"
             data-testid="page_input"
             name="number"
             value="1"
@@ -136,7 +136,7 @@ describe('Home.test.tsx', () => {
             de 25
           </span>
           <div
-            class="sc-kDTinF fJVQxc"
+            class="sc-jrQzAO hiyfKj"
             data-testid="angle_right"
           >
             <svg

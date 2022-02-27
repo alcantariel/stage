@@ -6,7 +6,7 @@ import {
   Notification,
   NOTIFICATION_TIME_IN_MS,
   NotificationValue
-} from '../Notification';
+} from './Notification';
 
 describe('Notification.test.tsx', () => {
   beforeEach(() => {

@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Select } from '../Select';
+
+import { Select } from './Select';
 
 describe('Select.test.tsx', () => {
   describe('tests with strings', () => {

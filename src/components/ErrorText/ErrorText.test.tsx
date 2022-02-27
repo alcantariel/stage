@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { render } from 'utils/testing';
 
-import { ErrorText } from '../ErrorText';
+import { ErrorText } from './ErrorText';
 
 describe('ErrorText.test.tsx', () => {
   it('should render error text', () => {

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { Pageable } from 'types';
 import { render } from 'utils/testing';
 
-import { Pagination } from '../Pagination';
+import { Pagination } from './Pagination';
 
 const pageable: Pageable = {
   first: true,

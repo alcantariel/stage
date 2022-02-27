@@ -1,4 +1,4 @@
-import { Label } from 'components';
+import { ErrorText, Label } from 'components';
 import {
   ChangeEvent,
   DetailedHTMLProps,
@@ -11,8 +11,6 @@ import {
 } from 'react';
 import styled from 'styled-components';
 
-import { ErrorText } from './ErrorText';
-
 export interface InputProps
   extends DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
@@ -24,7 +22,7 @@ export interface InputProps
   name: string;
 }
 
-export interface FormControls {
+interface InputControls {
   blurred: boolean;
   dirty: boolean;
   pristine: boolean;
@@ -49,7 +47,7 @@ export const StyledInput = styled.input<InputProps>`
   }
 `;
 
-export const initialControls: FormControls = {
+const initialControls: InputControls = {
   blurred: false,
   dirty: false,
   pristine: true,
@@ -80,7 +78,9 @@ export const Input = forwardRef(
       handleControls(event);
     };
 
-    const handleChangeControls = (prevControls: FormControls): FormControls => {
+    const handleChangeControls = (
+      prevControls: InputControls
+    ): InputControls => {
       return {
         ...prevControls,
         dirty: true,
@@ -90,7 +90,7 @@ export const Input = forwardRef(
 
     const handleFocusControls =
       (type: 'blur' | 'click') =>
-      (prevControls: FormControls): FormControls => {
+      (prevControls: InputControls): InputControls => {
         return {
           ...prevControls,
           [type === 'blur' ? 'blurred' : 'touched']: true

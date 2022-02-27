@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React, { ChangeEvent } from 'react';
 import { render } from 'utils/testing';
 
-import { Input } from '../Input';
+import { Input } from './Input';
 
 describe('Input.test.tsx', () => {
   it('should render input correctly', () => {

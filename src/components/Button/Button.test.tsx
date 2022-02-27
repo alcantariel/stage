@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { render } from 'utils/testing';
 
-import { Button } from '../Button';
+import { Button } from './Button';
 
 describe('Button.test.tsx', () => {
   it('should render button', () => {

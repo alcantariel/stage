@@ -1,4 +1,4 @@
-import { Label } from 'components';
+import { ErrorText, Label } from 'components';
 import {
   ChangeEvent,
   DetailedHTMLProps,
@@ -6,9 +6,6 @@ import {
   useState
 } from 'react';
 import styled from 'styled-components';
-
-import { ErrorText } from './ErrorText';
-import { FormControls, initialControls } from './Input';
 
 interface SelectProps
   extends DetailedHTMLProps<
@@ -30,6 +27,12 @@ interface SelectWithObjects<T> extends SelectProps {
 
 interface SelectWithStrings extends SelectProps {
   options: string[];
+}
+
+interface SelectControls {
+  blurred: boolean;
+  dirty: boolean;
+  pristine: boolean;
 }
 
 type Props<T> = SelectWithObjects<T> | SelectWithStrings;
@@ -59,6 +62,12 @@ const areOptionsWithObjects = <T extends any>(
   return props.options.length > 0 && typeof props.options[0] === 'object';
 };
 
+export const initialControls: SelectControls = {
+  blurred: false,
+  dirty: false,
+  pristine: true
+};
+
 export const Select = <T extends any>(props: Props<T>) => {
   const { label, name, value, error, onBlur, onChange, ...rest } = props;
 
@@ -74,7 +83,9 @@ export const Select = <T extends any>(props: Props<T>) => {
     handleControls(event);
   };
 
-  const handleChangeControls = (prevControls: FormControls): FormControls => {
+  const handleChangeControls = (
+    prevControls: SelectControls
+  ): SelectControls => {
     return {
       ...prevControls,
       dirty: true,
@@ -82,7 +93,9 @@ export const Select = <T extends any>(props: Props<T>) => {
     };
   };
 
-  const handleFocusControls = (prevControls: FormControls): FormControls => {
+  const handleFocusControls = (
+    prevControls: SelectControls
+  ): SelectControls => {
     return {
       ...prevControls,
       blurred: true
