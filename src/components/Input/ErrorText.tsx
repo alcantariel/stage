@@ -1,21 +1,39 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import {
+  DetailedHTMLProps,
+  ForwardedRef,
+  forwardRef,
+  HTMLAttributes,
+  ReactNode
+} from 'react';
 import styled from 'styled-components';
 
 export interface ErrorTextProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {
+  extends DetailedHTMLProps<
+    HTMLAttributes<HTMLParagraphElement>,
+    HTMLParagraphElement
+  > {
   children: ReactNode;
 }
 
-const StyledParagraph = styled.p`
+const StyledError = styled.p`
   color: ${props => props.theme.errorColor};
   font-size: 12px;
   margin-top: 2px;
 `;
 
-export const ErrorText = (props: ErrorTextProps) => {
-  return (
-    <StyledParagraph data-testid={`error_text_${props.id || props.children}`}>
-      {props.children}
-    </StyledParagraph>
-  );
-};
+export const ErrorText = forwardRef(
+  (props: ErrorTextProps, ref: ForwardedRef<HTMLParagraphElement>) => {
+    const { id, children, ...rest } = props;
+    return (
+      <StyledError
+        {...rest}
+        ref={ref}
+        data-testid={`error_text_${id || children}`}
+      >
+        {children}
+      </StyledError>
+    );
+  }
+);
+
+ErrorText.displayName = 'ErrorText';

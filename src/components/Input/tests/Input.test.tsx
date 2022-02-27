@@ -35,24 +35,6 @@ describe('Input.test.tsx', () => {
     );
   });
 
-  it('should show input error without handle input controls', () => {
-    render(
-      <Input
-        name="name"
-        label="Name"
-        error="name is required"
-        enableUpdateControls={false}
-      />
-    );
-
-    userEvent.click(screen.getByTestId('input_name'));
-
-    expect(screen.getByTestId('error_text_name')).toBeInTheDocument();
-    expect(screen.getByTestId('error_text_name')).toHaveTextContent(
-      'name is required'
-    );
-  });
-
   it('should handle blur', () => {
     const onBlur = jest.fn();
 

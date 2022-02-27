@@ -7,6 +7,7 @@ export interface ThemeColors {
   errorColor: string;
   shadowColor: string;
   defaultBorderColor: string;
+  defaultSelectedBorderColor: string;
   boxShadowHoverColor: string;
   disabledColor: string;
   disabledTextColor: string;

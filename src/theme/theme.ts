@@ -1,7 +1,8 @@
 import { Theme } from 'types';
 
 export const commonTheme = {
-  defaultBorderColor: '#979797',
+  defaultBorderColor: 'rgba(189, 192, 207, 0.5)',
+  defaultSelectedBorderColor: '#979797',
   errorColor: '#ff5b5b',
   disabledColor: '#e6ebf4',
   disabledTextColor: '#666',

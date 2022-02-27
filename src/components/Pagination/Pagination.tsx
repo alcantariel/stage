@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { StyledInput } from 'components';
+import { StyledInput, StyledSelect } from 'components';
 import { darken, lighten } from 'polished';
 import React, { ChangeEvent, useEffect, useState, KeyboardEvent } from 'react';
 import styled from 'styled-components';
@@ -24,6 +24,7 @@ const PaginationItem = styled.div`
   height: 30px;
   justify-content: center;
   margin: 0 8px;
+  user-select: none;
   width: 30px;
 
   :hover {
@@ -33,7 +34,7 @@ const PaginationItem = styled.div`
 `;
 
 const PaginationInput = styled(StyledInput)`
-  border: 1px solid ${props => props.theme.boxShadowHoverColor};
+  border: 1px solid ${props => props.theme.defaultBorderColor};
   font-weight: inherit;
   font-size: inherit;
   height: 30px;
@@ -42,24 +43,18 @@ const PaginationInput = styled(StyledInput)`
   width: 60px;
 `;
 
-const PageSizeSelector = styled.select`
-  border-radius: 4px;
-  border: 1px solid ${props => props.theme.boxShadowHoverColor};
-  font-weight: inherit;
-  font-size: inherit;
-  height: 30px;
-  margin-left: -330px;
-  text-align: center;
-  width: 60px;
-
-  :focus {
-    border: 1px solid ${props => props.theme.primary};
-    outline: none;
+const SelectorContainer = styled.div`
+  span {
+    margin: 0 220px 0 8px;
   }
 `;
 
-const PageSizeDescription = styled.p`
-  margin: 0 220px 0 8px;
+const PageSizeSelector = styled(StyledSelect)`
+  font-weight: inherit;
+  font-size: inherit;
+  margin-left: -330px;
+  text-align: center;
+  width: 60px;
 `;
 
 export interface PaginationProps {
@@ -160,23 +155,25 @@ export const Pagination = (props: PaginationProps) => {
 
   return (
     <PaginationContainer>
-      <PageSizeSelector
-        name="size"
-        defaultValue={page.size}
-        onChange={handlePageSizeChange}
-        data-testid="pageselector_options"
-      >
-        {pageSizeOptions.map(size => (
-          <option
-            key={size}
-            value={size}
-            data-testid={`pageselection_option_${size}`}
-          >
-            {size}
-          </option>
-        ))}
-      </PageSizeSelector>
-      <PageSizeDescription>itens</PageSizeDescription>
+      <SelectorContainer>
+        <PageSizeSelector
+          name="size"
+          defaultValue={page.size}
+          onChange={handlePageSizeChange}
+          data-testid="pageselector_options"
+        >
+          {pageSizeOptions.map(size => (
+            <option
+              key={size}
+              value={size}
+              data-testid={`pageselection_option_${size}`}
+            >
+              {size}
+            </option>
+          ))}
+        </PageSizeSelector>
+        <span>itens</span>
+      </SelectorContainer>
       <PaginationItem
         data-testid="angle_left"
         onClick={() => handleAngleChange(SUB_OPERATION)}
@@ -191,7 +188,7 @@ export const Pagination = (props: PaginationProps) => {
         onChange={handlePageNumberChange}
         onKeyDown={handlePageNumberKeyDown}
       />
-      de {page.totalPages}
+      <span>de {page.totalPages}</span>
       <PaginationItem
         data-testid="angle_right"
         onClick={() => handleAngleChange(SUM_OPERATION)}
