@@ -140,7 +140,7 @@ export const Input = forwardRef(
           onChange={handleChange}
           data-testid={`input_${name}`}
         />
-        {hasError && <ErrorText id={name}>{error}</ErrorText>}
+        {hasError && <ErrorText>{error}</ErrorText>}
       </>
     );
   }

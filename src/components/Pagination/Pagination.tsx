@@ -33,7 +33,7 @@ const PaginationItem = styled.div`
   }
 `;
 
-const PaginationInput = styled(StyledInput)`
+const PaginationInput = styled(props => <StyledInput {...props} />)`
   border: 1px solid ${props => props.theme.defaultBorderColor};
   font-weight: inherit;
   font-size: inherit;
@@ -49,7 +49,7 @@ const SelectorContainer = styled.div`
   }
 `;
 
-const PageSizeSelector = styled(StyledSelect)`
+const PageSizeSelector = styled(props => <StyledSelect {...props} />)`
   font-weight: inherit;
   font-size: inherit;
   margin-left: -330px;

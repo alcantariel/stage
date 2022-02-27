@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { ChangeEvent } from 'react';
 import { render } from 'utils/testing';
@@ -23,16 +23,13 @@ describe('Input.test.tsx', () => {
   it('should show input error', () => {
     render(<Input name="name" label="Name" error="name is required" />);
 
-    expect(screen.queryByTestId('error_text_name')).not.toBeInTheDocument();
+    expect(screen.queryByText('name is required')).not.toBeInTheDocument();
 
-    userEvent.click(screen.getByTestId('input_name'));
+    act(() => {
+      fireEvent.blur(screen.getByTestId('input_name'));
+    });
 
-    fireEvent.blur(screen.getByTestId('input_name'));
-
-    expect(screen.getByTestId('error_text_name')).toBeInTheDocument();
-    expect(screen.getByTestId('error_text_name')).toHaveTextContent(
-      'name is required'
-    );
+    expect(screen.getByText('name is required')).toBeInTheDocument();
   });
 
   it('should handle blur', () => {

@@ -19,20 +19,24 @@ describe('Home.test.tsx', () => {
         </label>
         <select
           class="sc-hKwDye fNAzLj"
+          data-testid="select_name"
           id="name"
           name="name"
         >
           <option
+            data-testid="option_default"
             value=""
           >
             Selecione
           </option>
           <option
+            data-testid="option_0_1"
             value="1"
           >
             1
           </option>
           <option
+            data-testid="option_1_2"
             value="2"
           >
             2
@@ -56,7 +60,7 @@ describe('Home.test.tsx', () => {
             class="sc-crHmcD bhHcQR"
           >
             <select
-              class="sc-hKwDye sc-egiyK fNAzLj ebaeuZ"
+              class="sc-hKwDye fNAzLj sc-egiyK ebaeuZ"
               data-testid="pageselector_options"
               name="size"
             >
@@ -123,7 +127,7 @@ describe('Home.test.tsx', () => {
             </svg>
           </div>
           <input
-            class="sc-dkPtRN sc-iqseJM dOORyL kdPAUf"
+            class="sc-dkPtRN dOORyL sc-iqseJM kdPAUf"
             data-testid="page_input"
             name="number"
             value="1"

@@ -82,14 +82,12 @@ export const Select = <T extends any>(props: Props<T>) => {
     };
   };
 
-  const handleFocusControls =
-    (type: 'blur' | 'click') =>
-    (prevControls: FormControls): FormControls => {
-      return {
-        ...prevControls,
-        [type === 'blur' ? 'blurred' : 'touched']: true
-      };
+  const handleFocusControls = (prevControls: FormControls): FormControls => {
+    return {
+      ...prevControls,
+      blurred: true
     };
+  };
 
   const handleControls = (
     event: ChangeEvent<HTMLSelectElement> | React.FocusEvent<HTMLSelectElement>
@@ -98,7 +96,7 @@ export const Select = <T extends any>(props: Props<T>) => {
     const isChangeEvent = event.type === 'change';
 
     if (!controls.blurred && isBlurEvent) {
-      setControls(handleFocusControls('blur'));
+      setControls(handleFocusControls);
     }
 
     if (controls.pristine && isChangeEvent) {
@@ -111,7 +109,11 @@ export const Select = <T extends any>(props: Props<T>) => {
       props as SelectWithObjects<T>;
 
     return options.map((option: T, index: number) => (
-      <option key={index} value={getOptionValue(option, index)}>
+      <option
+        key={index}
+        value={getOptionValue(option, index)}
+        data-testid={`option_${index}_${option}`}
+      >
         {getOptionLabel(option, index)}
       </option>
     ));
@@ -121,7 +123,11 @@ export const Select = <T extends any>(props: Props<T>) => {
     const { options } = props as SelectWithStrings;
 
     return options.map((option: string, index: number) => (
-      <option key={index} value={option}>
+      <option
+        key={index}
+        value={option}
+        data-testid={`option_${index}_${option}`}
+      >
         {option}
       </option>
     ));
@@ -131,9 +137,11 @@ export const Select = <T extends any>(props: Props<T>) => {
 
   return (
     <>
-      <Label htmlFor={name} data-testid={`label_select_${name}`}>
-        {label}
-      </Label>
+      {label && (
+        <Label htmlFor={name} data-testid={`label_select_${name}`}>
+          {label}
+        </Label>
+      )}
       <StyledSelect
         {...rest}
         id={name}
@@ -142,8 +150,11 @@ export const Select = <T extends any>(props: Props<T>) => {
         defaultValue={value}
         onBlur={handleBlur}
         onChange={handleChange}
+        data-testid={`select_${name}`}
       >
-        <option value="">Selecione</option>
+        <option value="" data-testid="option_default">
+          Selecione
+        </option>
         {areOptionsWithObjects(props)
           ? renderObjectOptions()
           : renderStringOptions()}
