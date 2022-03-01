@@ -44,6 +44,8 @@ const PaginationInput = styled(props => <StyledInput {...props} />)`
 `;
 
 const SelectorContainer = styled.div`
+  width: 60px;
+
   span {
     margin: 0 220px 0 8px;
   }
@@ -54,7 +56,6 @@ const PageSizeSelector = styled(props => <StyledSelect {...props} />)`
   font-size: inherit;
   margin-left: -330px;
   text-align: center;
-  width: 60px;
 `;
 
 export interface PaginationProps {
