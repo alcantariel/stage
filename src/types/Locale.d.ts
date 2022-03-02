@@ -140,7 +140,7 @@ export type LocaleCode =
   | 'sw-TZ'
   | 'ru-UA'
   | 'teo-UG'
-  | 'en-US-POSIX'
+  | 'en-US'
   | 'es-UY'
   | 'uz-Cyrl-UZ'
   | 'es-VE'

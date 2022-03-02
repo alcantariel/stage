@@ -28,7 +28,7 @@ const PaginationItem = styled.div`
   width: 30px;
 
   :hover {
-    background-color: ${props => darken('.1', props.theme.boxShadowHoverColor)};
+    background-color: ${props => darken('.1', props.theme.defaultBorderColor)};
     cursor: pointer;
   }
 `;

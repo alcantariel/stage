@@ -147,7 +147,7 @@ export const currencyByLocale: Record<LocaleCode, CurrencyCode> = {
   'sw-TZ': 'TZS', // 'Tanzanian Shilling',
   'ru-UA': 'UAH', // 'Ukraine Hryvnia',
   'teo-UG': 'UGX', // 'Uganda Shilling',
-  'en-US-POSIX': 'USD', // 'US Dollar',
+  'en-US': 'USD', // 'US Dollar',
   'es-UY': 'UYU', // 'Uruguayan Peso',
   'uz-Cyrl-UZ': 'UZS', // 'Uzbekistan Sum',
   'es-VE': 'VEF', // 'Venezuelan Bolivar',
