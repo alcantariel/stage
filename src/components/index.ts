@@ -5,6 +5,7 @@ export * from './Input';
 export * from './Label';
 export * from './Notification';
 export * from './Pagination';
+export * from './SectionTitle';
 export * from './Select';
 export * from './Spinner';
 export * from './Table';

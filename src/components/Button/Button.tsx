@@ -39,6 +39,7 @@ const StyledButton = styled.button<ButtonProps>`
   letter-spacing: 0.5px;
   padding: 0 16px;
   text-align: center;
+  transition: 0.3s ease;
   width: ${props => `${props.width}px`};
 
   :disabled {

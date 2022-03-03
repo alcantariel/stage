@@ -1,7 +1,8 @@
-import { Input, Pagination, Select } from 'components';
+import { Pagination, SectionTitle } from 'components';
 import { useState } from 'react';
+import { Pageable } from 'types';
 
-const pageable = {
+const page: Pageable = {
   first: true,
   last: false,
   number: 1,
@@ -11,8 +12,8 @@ const pageable = {
   totalPages: 25
 };
 
-const Home = () => {
-  const [pagination, setPagination] = useState(pageable);
+const PaginationPage = () => {
+  const [pagination, setPagination] = useState(page);
 
   const handlePagination = (page: any) => {
     setPagination(prev => {
@@ -21,23 +22,17 @@ const Home = () => {
         size: page.size,
         number: page.number,
         first: page.number === 1,
-        last: page.number === pageable.totalPages
+        last: page.number === page.totalPages
       };
     });
   };
 
   return (
     <>
-      <Select
-        name="name"
-        label="Name"
-        options={['1', '2']}
-        error="name is required"
-      />
-      <Input name="name" label="Name" error="name is required" />
+      <SectionTitle>Pagination</SectionTitle>
       <Pagination page={pagination} onPageChange={handlePagination} />
     </>
   );
 };
 
-export { Home, Home as default };
+export { PaginationPage, PaginationPage as default };

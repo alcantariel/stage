@@ -6,7 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { defaultLocale, getLocale } from 'utils';
 
-const Home = lazy(() => import('pages/Home/Home'));
+const HomePage = lazy(() => import('pages/Home/HomePage'));
+const PaginationPage = lazy(() => import('pages/Pagination/PaginationPage'));
 
 const App = () => {
   const { theme } = useTheme();
@@ -18,7 +19,8 @@ const App = () => {
           <BrowserRouter>
             <Suspense fallback={<h1>Loading...</h1>}>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/pagination" element={<PaginationPage />} />
               </Routes>
             </Suspense>
           </BrowserRouter>

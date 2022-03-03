@@ -24,6 +24,7 @@ const PaginationItem = styled.div`
   height: 30px;
   justify-content: center;
   margin: 0 8px;
+  transition: 0.3s ease;
   user-select: none;
   width: 30px;
 
