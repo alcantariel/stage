@@ -55,7 +55,7 @@ const PageSizeSelector = styled(props => <StyledSelect {...props} />)`
   font-size: inherit;
   margin-left: -330px;
   text-align: center;
-  width: 60px;
+  min-width: 60px;
 `;
 
 export interface PaginationProps {
