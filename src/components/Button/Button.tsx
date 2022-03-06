@@ -8,7 +8,7 @@ import {
   MouseEvent
 } from 'react';
 import styled from 'styled-components';
-import { commonTheme } from 'theme';
+import { theme } from 'theme';
 
 export type ButtonVariant = keyof typeof variants;
 
@@ -23,10 +23,10 @@ export interface ButtonProps
 }
 
 const variants = {
-  primary: commonTheme.primary,
-  danger: commonTheme.errorColor,
-  warning: commonTheme.warningColor,
-  success: commonTheme.successColor
+  primary: theme.primary,
+  danger: theme.errorColor,
+  warning: theme.warningColor,
+  success: theme.successColor
 };
 
 const StyledButton = styled.button<ButtonProps>`

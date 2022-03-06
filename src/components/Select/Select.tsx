@@ -53,6 +53,8 @@ export const StyledSelect = styled.select<SelectProps>`
 
   :disabled {
     background-color: ${props => props.theme.disabledColor};
+    color: ${props => props.theme.disabledTextColor};
+    cursor: not-allowed;
   }
 `;
 

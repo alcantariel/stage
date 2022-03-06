@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import { SectionTitle } from './SectionTitle';
 
-describe('SectionTitle.test.tsx', () => {
+import { PageTitle } from './PageTitle';
+
+describe('PageTitle.test.tsx', () => {
   it('should render correctly', () => {
-    render(<SectionTitle>Title</SectionTitle>);
+    render(<PageTitle>Title</PageTitle>);
     expect(screen.getByText('Title')).toBeInTheDocument();
   });
 });

@@ -1,27 +1,21 @@
-export type ThemeOptions = 'dark_theme' | 'light_theme';
-
-export interface ThemeColors {
-  primary: string;
-  textColor: string;
+export interface Theme {
   backgroundColor: string;
-  errorColor: string;
-  shadowColor: string;
+  boxShadowColor: string;
   defaultBorderColor: string;
   defaultSelectedBorderColor: string;
-  boxShadowHoverColor: string;
   disabledColor: string;
   disabledTextColor: string;
+  errorColor: string;
+  infoColor: string;
+  primary: string;
+  shadowColor: string;
+  successColor: string;
+  textColor: string;
   warningColor: string;
   successColor: string;
   infoColor: string;
 }
 
-export interface Theme extends ThemeColors {
-  themeId: ThemeOptions;
-}
-
 declare module 'styled-components' {
-  interface DefaultTheme extends ThemeColors {
-    themeId: ThemeOptions;
-  }
+  interface DefaultTheme extends Theme {}
 }

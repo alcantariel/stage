@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import { Route, Routes } from 'react-router';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme } from 'theme';
+import { theme } from 'theme';
 import { defaultLocale } from 'utils';
 
 export const render = (
@@ -15,7 +15,7 @@ export const render = (
   { path }: { path: string } = { path: '/' }
 ): RenderResult => {
   return renderTestingLibrary(
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={theme}>
       <IntlProvider locale={defaultLocale} defaultLocale={defaultLocale}>
         <NotificationProvider>
           <Routes>

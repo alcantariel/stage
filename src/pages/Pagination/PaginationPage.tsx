@@ -1,4 +1,4 @@
-import { Pagination, SectionTitle } from 'components';
+import { Pagination, PageTitle } from 'components';
 import { useState } from 'react';
 import { Pageable } from 'types';
 
@@ -29,7 +29,7 @@ const PaginationPage = () => {
 
   return (
     <>
-      <SectionTitle>Pagination</SectionTitle>
+      <PageTitle>Pagination</PageTitle>
       <Pagination page={pagination} onPageChange={handlePagination} />
     </>
   );

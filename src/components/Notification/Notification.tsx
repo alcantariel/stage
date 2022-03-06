@@ -9,7 +9,7 @@ import {
   useState
 } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { commonTheme } from 'theme';
+import { theme } from 'theme';
 
 export type NotificationType = 'success' | 'error' | 'warning' | 'info';
 
@@ -125,10 +125,10 @@ const icons: Record<NotificationType, JSX.Element> = {
 };
 
 const variants: Record<NotificationType, string> = {
-  info: commonTheme.infoColor,
-  error: commonTheme.errorColor,
-  warning: commonTheme.warningColor,
-  success: commonTheme.successColor
+  info: theme.infoColor,
+  error: theme.errorColor,
+  warning: theme.warningColor,
+  success: theme.successColor
 };
 
 export const Notification = ({ value, onDestroy }: NotificationProps) => {

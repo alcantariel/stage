@@ -38,7 +38,7 @@ const StyledActionButton = styled.button<ButtonProps>`
 
   :hover,
   :focus {
-    box-shadow: 0 0 0 1px ${props => props.theme.boxShadowHoverColor};
+    box-shadow: 0 0 0 1px ${props => props.theme.boxShadowColor};
     outline: none;
   }
 

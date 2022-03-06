@@ -1,4 +1,4 @@
-import { SectionTitle } from 'components';
+import { PageTitle } from 'components';
 import { lighten } from 'polished';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
@@ -23,7 +23,7 @@ const HomePage = () => {
 
   return (
     <>
-      <SectionTitle>Components</SectionTitle>
+      <PageTitle>Components</PageTitle>
       <Card onClick={() => navigate('/pagination')}>Pagination</Card>
     </>
   );
