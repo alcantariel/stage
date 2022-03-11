@@ -7,11 +7,16 @@ import { Page, Pageable } from 'types';
 import { isNumber, KeyboardCodeUtils } from 'utils';
 
 const PaginationContainer = styled.div`
-  align-items: center;
   display: flex;
   font-size: 16px;
   font-weight: bold;
-  justify-content: center;
+  min-width: 413.5px;
+`;
+
+const PaginationItems = styled.div`
+  align-items: center;
+  display: flex;
+  margin-left: 100px;
 `;
 
 const PaginationItem = styled.div`
@@ -44,18 +49,11 @@ const PaginationInput = styled(props => <StyledInput {...props} />)`
   width: 60px;
 `;
 
-const SelectorContainer = styled.div`
-  span {
-    margin: 0 220px 0 8px;
-  }
-`;
-
 const PageSizeSelector = styled(props => <StyledSelect {...props} />)`
   font-weight: inherit;
   font-size: inherit;
-  margin-left: -330px;
   text-align: center;
-  min-width: 60px;
+  max-width: 110px;
 `;
 
 export interface PaginationProps {
@@ -156,46 +154,45 @@ export const Pagination = (props: PaginationProps) => {
 
   return (
     <PaginationContainer>
-      <SelectorContainer>
-        <PageSizeSelector
-          name="size"
-          defaultValue={page.size}
-          onChange={handlePageSizeChange}
-          data-testid="pageselector_options"
+      <PageSizeSelector
+        name="size"
+        defaultValue={page.size}
+        onChange={handlePageSizeChange}
+        data-testid="pageselector_options"
+      >
+        {pageSizeOptions.map(size => (
+          <option
+            key={size}
+            value={size}
+            data-testid={`pageselection_option_${size}`}
+          >
+            {size} itens
+          </option>
+        ))}
+      </PageSizeSelector>
+      <PaginationItems>
+        <PaginationItem
+          data-testid="angle_left"
+          onClick={() => handleAngleChange(SUB_OPERATION)}
         >
-          {pageSizeOptions.map(size => (
-            <option
-              key={size}
-              value={size}
-              data-testid={`pageselection_option_${size}`}
-            >
-              {size}
-            </option>
-          ))}
-        </PageSizeSelector>
-        <span>itens</span>
-      </SelectorContainer>
-      <PaginationItem
-        data-testid="angle_left"
-        onClick={() => handleAngleChange(SUB_OPERATION)}
-      >
-        <FontAwesomeIcon icon="angle-left" />
-      </PaginationItem>
-      <PaginationInput
-        name="number"
-        value={currentPage}
-        data-testid="page_input"
-        onBlur={handlePageNumberBlur}
-        onChange={handlePageNumberChange}
-        onKeyDown={handlePageNumberKeyDown}
-      />
-      <span>de {page.totalPages}</span>
-      <PaginationItem
-        data-testid="angle_right"
-        onClick={() => handleAngleChange(SUM_OPERATION)}
-      >
-        <FontAwesomeIcon icon="angle-right" />
-      </PaginationItem>
+          <FontAwesomeIcon icon="angle-left" />
+        </PaginationItem>
+        <PaginationInput
+          name="number"
+          value={currentPage}
+          data-testid="page_input"
+          onBlur={handlePageNumberBlur}
+          onChange={handlePageNumberChange}
+          onKeyDown={handlePageNumberKeyDown}
+        />
+        <span>de {page.totalPages}</span>
+        <PaginationItem
+          data-testid="angle_right"
+          onClick={() => handleAngleChange(SUM_OPERATION)}
+        >
+          <FontAwesomeIcon icon="angle-right" />
+        </PaginationItem>
+      </PaginationItems>
     </PaginationContainer>
   );
 };
