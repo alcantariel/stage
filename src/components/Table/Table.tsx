@@ -26,12 +26,11 @@ export interface TableProps<T> {
 }
 
 const StyledTable = styled.table`
+  border: 1px solid ${props => lighten('.1', props.theme.primary)};
   border-collapse: separate;
-  border-color: ${props => lighten('.1', props.theme.primary)};
   border-radius: 6px;
   box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
-  border-style: solid;
-  border-width: 1px;
+  border-spacing: 0;
   color: ${props => props.theme.textColor};
   min-width: 95%;
   text-align: left;
@@ -52,7 +51,7 @@ const StyledTable = styled.table`
     tr {
       th {
         border-bottom-color: ${props => lighten('.1', props.theme.primary)};
-        border-bottom-width: 2px;
+        border-width: 0 1px 2px 0;
         border-style: solid;
         color: ${props => props.theme.textColor};
         padding: 8px;
@@ -60,6 +59,10 @@ const StyledTable = styled.table`
         svg {
           cursor: pointer;
           height: 12px;
+        }
+
+        :last-child {
+          border-right-width: 0;
         }
       }
     }
