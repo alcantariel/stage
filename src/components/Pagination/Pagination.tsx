@@ -64,7 +64,7 @@ export interface PaginationProps {
 const FIRST_PAGE = 1;
 const SUB_OPERATION = -1;
 const SUM_OPERATION = +1;
-const pageSizeOptions = [10, 20, 30, 40, 50, 100];
+const pageSizeOptions = [10, 20, 50, 100];
 
 export const Pagination = (props: PaginationProps) => {
   const { page, onPageChange } = props;
