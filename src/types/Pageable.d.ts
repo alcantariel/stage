@@ -1,4 +1,4 @@
-export interface Pageable {
+export interface Page {
   number: number;
   totalPages: number;
   first: boolean;
@@ -8,7 +8,7 @@ export interface Pageable {
   totalElements: number;
 }
 
-export interface Page {
+export interface PageRequest {
   number: number;
   size: number;
 }

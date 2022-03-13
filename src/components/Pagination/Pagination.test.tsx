@@ -1,11 +1,11 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Pageable } from 'types';
+import { Page } from 'types';
 import { render } from 'utils/testing';
 
 import { Pagination } from './Pagination';
 
-const pageable: Pageable = {
+const page: Page = {
   first: true,
   last: false,
   number: 1,
@@ -19,10 +19,10 @@ describe('Pagination.test.tsx', () => {
   it('should render pagination correctly', () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('pageselector_options')).toHaveValue('20');
-    expect(screen.getByText('itens')).toBeInTheDocument();
+    expect(screen.getByText('20 itens')).toBeInTheDocument();
     expect(screen.getByTestId('angle_left')).toBeInTheDocument();
     expect(screen.getByTestId('page_input')).toHaveValue('1');
     expect(screen.getByTestId('angle_right')).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('Pagination.test.tsx', () => {
   it('should not change page when click previous page because its in first page', () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
 
@@ -51,7 +51,7 @@ describe('Pagination.test.tsx', () => {
 
     render(
       <Pagination
-        page={{ ...pageable, number: 25 }}
+        page={{ ...page, number: 25 }}
         onPageChange={onPageChangeFn}
       />
     );
@@ -70,7 +70,7 @@ describe('Pagination.test.tsx', () => {
   it('should stay in first page when input is not a number', () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     act(() => {
       userEvent.type(screen.getByTestId('page_input'), 'a');
@@ -84,7 +84,7 @@ describe('Pagination.test.tsx', () => {
   it('should change page when click next page', () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     act(() => {
       userEvent.click(screen.getByTestId('angle_right'));
@@ -100,7 +100,7 @@ describe('Pagination.test.tsx', () => {
 
     render(
       <Pagination
-        page={{ ...pageable, number: 25 }}
+        page={{ ...page, number: 25 }}
         onPageChange={onPageChangeFn}
       />
     );
@@ -119,7 +119,7 @@ describe('Pagination.test.tsx', () => {
   it('should not change page when type inside input and not blur', () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
 
@@ -135,7 +135,7 @@ describe('Pagination.test.tsx', () => {
   it('should change page when type inside input and blur', async () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
 
@@ -155,7 +155,7 @@ describe('Pagination.test.tsx', () => {
   it('should change page when type inside input and press enter', async () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
 
@@ -175,7 +175,7 @@ describe('Pagination.test.tsx', () => {
   it('should change number of items per page', async () => {
     const onPageChangeFn = jest.fn();
 
-    render(<Pagination page={pageable} onPageChange={onPageChangeFn} />);
+    render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
     expect(screen.getByTestId('pageselector_options')).toHaveValue('20');

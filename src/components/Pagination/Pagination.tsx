@@ -3,14 +3,14 @@ import { StyledInput, StyledSelect } from 'components';
 import { darken, lighten } from 'polished';
 import React, { ChangeEvent, useEffect, useState, KeyboardEvent } from 'react';
 import styled from 'styled-components';
-import { Page, Pageable } from 'types';
+import { PageRequest, Page } from 'types';
 import { isNumber, KeyboardCodeUtils } from 'utils';
 
 const PaginationContainer = styled.div`
   display: flex;
   font-size: 16px;
   font-weight: bold;
-  min-width: 413.5px;
+  width: 413.5px;
 `;
 
 const PaginationItems = styled.div`
@@ -57,13 +57,8 @@ const PageSizeSelector = styled(props => <StyledSelect {...props} />)`
 `;
 
 export interface PaginationProps {
-  page: Pageable;
-  onPageChange: (page: Page) => void;
-}
-
-interface InnerPage {
-  number: number;
-  size: number;
+  page: Page;
+  onPageChange: (page: PageRequest) => void;
 }
 
 const FIRST_PAGE = 1;
@@ -74,7 +69,7 @@ const pageSizeOptions = [10, 20, 30, 40, 50, 100];
 export const Pagination = (props: PaginationProps) => {
   const { page, onPageChange } = props;
   const [currentPage, setCurrentPage] = useState(page.number);
-  const [innerPage, setInnerPage] = useState<InnerPage>({
+  const [innerPage, setInnerPage] = useState<PageRequest>({
     number: page.number,
     size: page.size
   });
