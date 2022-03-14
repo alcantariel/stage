@@ -1,4 +1,6 @@
 export * from './Button';
+export * from './Code';
+export * from './ComponentPage';
 export * from './Container';
 export * from './ErrorText';
 export * from './FormattedCurrency';

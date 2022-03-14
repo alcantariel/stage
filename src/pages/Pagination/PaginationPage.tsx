@@ -1,4 +1,4 @@
-import { Container, Pagination, Table } from 'components';
+import { Code, ComponentPage, Pagination } from 'components';
 import { useState } from 'react';
 import { PageRequest, Page, Property } from 'types';
 
@@ -8,7 +8,7 @@ const initialPage: Page = {
   number: 1,
   numberOfElements: 20,
   size: 20,
-  totalElements: 40,
+  totalElements: 8200,
   totalPages: 25
 };
 
@@ -45,47 +45,22 @@ const PaginationPage = () => {
   };
 
   return (
-    <Container>
-      <h1>Pagination</h1>
-      <p>
-        Used to split a large list into several pages, and consequently load
-        only one at time.
-      </p>
-      <h2>When to use</h2>
-      <ul>
-        <li>
-          When the list is very large and will take a long time to load all
-          items.
-        </li>
-      </ul>
-      <h2>Examples</h2>
-      <Pagination page={page} onPageChange={handlePage} />
-      <h2>Usage</h2>
-      <code>{'<Pagination page={page} onPageChange={handlePage} />'}</code>
-      <h2>Properties</h2>
-      <Table values={properties} keyExtractor={property => property.name}>
-        <Table.Column
-          header="Name"
-          data={(property: Property) => property.name}
-        />
-        <Table.Column
-          header="Description"
-          data={(property: Property) => property.description}
-        />
-        <Table.Column
-          header="Type"
-          data={(property: Property) => property.type}
-        />
-        <Table.Column
-          header="Default"
-          data={(property: Property) => property.defaultValue}
-        />
-        <Table.Column
-          header="Required"
-          data={(property: Property) => property.required.toString()}
-        />
-      </Table>
-    </Container>
+    <ComponentPage
+      title="Pagination"
+      description="Used to split a large list into several pages, and consequently load
+    only one at time."
+    >
+      <ComponentPage.Section subtitle="When to Use">
+        When the list is very large and will take a long time to load all items.
+      </ComponentPage.Section>
+      <ComponentPage.Section subtitle="Examples">
+        <Pagination page={page} onPageChange={handlePage} />
+      </ComponentPage.Section>
+      <ComponentPage.Section subtitle="Usage">
+        <Code>{'<Pagination page={page} onPageChange={handlePage} />'}</Code>
+      </ComponentPage.Section>
+      <ComponentPage.TableProperties properties={properties} />
+    </ComponentPage>
   );
 };
 

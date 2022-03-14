@@ -38,6 +38,7 @@ interface SelectControls {
 type Props<T> = SelectWithObjects<T> | SelectWithStrings;
 
 export const StyledSelect = styled.select<SelectProps>`
+  background-color: ${props => props.theme.backgroundColor};
   border: 1px solid
     ${props =>
       props.hasError ? props.theme.errorColor : props.theme.defaultBorderColor};

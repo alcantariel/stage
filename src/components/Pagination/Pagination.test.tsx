@@ -11,7 +11,7 @@ const page: Page = {
   number: 1,
   numberOfElements: 20,
   size: 20,
-  totalElements: 40,
+  totalElements: 8200,
   totalPages: 25
 };
 
@@ -22,7 +22,7 @@ describe('Pagination.test.tsx', () => {
     render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('pageselector_options')).toHaveValue('20');
-    expect(screen.getByText('20 itens')).toBeInTheDocument();
+    expect(screen.getByText('20 items')).toBeInTheDocument();
     expect(screen.getByTestId('angle_left')).toBeInTheDocument();
     expect(screen.getByTestId('page_input')).toHaveValue('1');
     expect(screen.getByTestId('angle_right')).toBeInTheDocument();

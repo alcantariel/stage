@@ -1,7 +1,7 @@
 import { Theme } from 'types';
 
 export const theme: Theme = {
-  backgroundColor: '#fff',
+  backgroundColor: '#f1f1f1',
   boxShadowColor: 'rgba(189, 192, 207, 0.5)',
   defaultBorderColor: 'rgba(189, 192, 207, 0.5)',
   defaultSelectedBorderColor: '#979797',

@@ -30,6 +30,7 @@ interface InputControls {
 }
 
 export const StyledInput = styled.input<InputProps>`
+  background-color: ${props => props.theme.backgroundColor};
   border: 1px solid
     ${props =>
       props.hasError ? props.theme.errorColor : props.theme.defaultBorderColor};

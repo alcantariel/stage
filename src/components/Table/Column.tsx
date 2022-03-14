@@ -8,6 +8,7 @@ export interface ColumnProps<T> {
   name?: string;
   header?: ReactNode;
   hidden?: boolean;
+  width?: string;
   data: (value: T, index: number) => ReactNode;
 }
 

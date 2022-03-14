@@ -161,7 +161,7 @@ export const Pagination = (props: PaginationProps) => {
             value={size}
             data-testid={`pageselection_option_${size}`}
           >
-            {size} itens
+            {size} items
           </option>
         ))}
       </PageSizeSelector>
@@ -180,7 +180,7 @@ export const Pagination = (props: PaginationProps) => {
           onChange={handlePageNumberChange}
           onKeyDown={handlePageNumberKeyDown}
         />
-        <span>de {page.totalPages}</span>
+        <span>of {page.totalPages}</span>
         <PaginationItem
           data-testid="angle_right"
           onClick={() => handleAngleChange(SUM_OPERATION)}

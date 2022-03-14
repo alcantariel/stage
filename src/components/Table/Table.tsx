@@ -13,6 +13,7 @@ interface Header {
 }
 
 interface Data<T> {
+  width?: string;
   data: (value: T, index: number) => ReactNode;
 }
 
@@ -26,12 +27,13 @@ export interface TableProps<T> {
 }
 
 const StyledTable = styled.table`
+  background-color: ${props => props.theme.backgroundColor};
   border: 1px solid ${props => lighten('.1', props.theme.primary)};
   border-collapse: separate;
   border-radius: 6px;
   box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
   border-spacing: 0;
-  color: ${props => props.theme.textColor};
+  color: ${props => props.theme.primary};
   min-width: 95%;
   text-align: left;
 
@@ -103,12 +105,12 @@ const StyledTable = styled.table`
       :nth-child(even) {
         background-color: ${props =>
           darken('.05', props.theme.backgroundColor)}};
-      }
 
-      :hover {
-        background-color: ${props =>
-          darken('.1', props.theme.backgroundColor)}};
-        transition: all 0.2s linear;
+        :hover {
+          background-color: ${props =>
+            darken('.1', props.theme.backgroundColor)}};
+          transition: all 0.2s linear;
+        }
       }
     }
   }
@@ -134,10 +136,10 @@ export const Table = <T extends any>(props: TableProps<T>) => {
     const tds: Data<T>[] = [];
 
     Children.forEach(children, child => {
-      const { data, header, name, hidden } = child.props;
+      const { data, header, hidden, name, width } = child.props;
 
       if (!hidden) {
-        tds.push({ data });
+        tds.push({ data, width });
         ths.push({ header, name });
       }
     });
@@ -193,7 +195,7 @@ export const Table = <T extends any>(props: TableProps<T>) => {
                   const tdKey = `${extractedKey}_${index}`;
 
                   return (
-                    <td key={tdKey} data-testid={tdKey}>
+                    <td key={tdKey} data-testid={tdKey} width={td.width}>
                       {td.data(value, index)}
                     </td>
                   );
