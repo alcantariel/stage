@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'theme';
 import { defaultLocale, getLocale } from 'utils';
 
+const ButtonPage = lazy(() => import('pages/Button/ButtonPage'));
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const PaginationPage = lazy(() => import('pages/Pagination/PaginationPage'));
 
@@ -26,6 +27,7 @@ const App = () => {
               <Wrapper>
                 <Routes>
                   <Route path="/" element={<HomePage />} />
+                  <Route path="/button" element={<ButtonPage />} />
                   <Route path="/pagination" element={<PaginationPage />} />
                 </Routes>
               </Wrapper>

@@ -1,4 +1,9 @@
-import { ReactElement, ReactNode } from 'react';
+import {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  ReactElement,
+  ReactNode
+} from 'react';
 import styled from 'styled-components';
 import { Property } from 'types';
 
@@ -11,7 +16,8 @@ interface ComponentPageProps {
   title: string;
 }
 
-interface SectionProps {
+interface SectionProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children: ReactNode;
   subtitle: string;
 }
@@ -44,13 +50,13 @@ export const ComponentPage = (props: ComponentPageProps) => {
 };
 
 const Section = (props: SectionProps) => {
-  const { children, subtitle } = props;
+  const { children, subtitle, ...rest } = props;
 
   return (
-    <>
+    <div {...rest}>
       <h2>{subtitle}</h2>
       {children}
-    </>
+    </div>
   );
 };
 
@@ -79,7 +85,7 @@ const TableProperties = (props: TablePropertiesProps) => {
         />
         <Table.Column
           header="Required"
-          data={(property: Property) => property.required.toString()}
+          data={(property: Property) => property.required}
         />
       </Table>
     </Section>

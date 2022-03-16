@@ -3,5 +3,5 @@ export interface Property {
   description: string;
   type: string;
   defaultValue: string;
-  required: boolean;
+  required: string;
 }

@@ -49,13 +49,10 @@ const HomePage = () => {
       <SectionTitle>Components</SectionTitle>
       <CardsList>
         <Card onClick={() => navigate('/button')}>Button</Card>
-        <Card onClick={() => navigate('/code')}>Code</Card>
-        <Card onClick={() => navigate('/error-text')}>ErrorText</Card>
         <Card onClick={() => navigate('/formatted-currency')}>
           FormattedCurency
         </Card>
         <Card onClick={() => navigate('/input')}>Input</Card>
-        <Card onClick={() => navigate('/label')}>Label</Card>
         <Card onClick={() => navigate('/notification')}>Notification</Card>
         <Card onClick={() => navigate('/pagination')}>Pagination</Card>
         <Card onClick={() => navigate('/select')}>Select</Card>

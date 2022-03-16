@@ -5,7 +5,7 @@ export const theme: Theme = {
   boxShadowColor: 'rgba(189, 192, 207, 0.5)',
   defaultBorderColor: 'rgba(189, 192, 207, 0.5)',
   defaultSelectedBorderColor: '#979797',
-  disabledColor: '#e6ebf4',
+  disabledColor: '#c9d4e7',
   disabledTextColor: '#666',
   errorColor: '#ff5b5b',
   infoColor: '#bbc',

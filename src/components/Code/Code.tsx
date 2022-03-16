@@ -6,4 +6,6 @@ export const Code = styled.code`
   border-radius: 4px;
   font-family: courier, monospace;
   padding: 0 0.5rem;
+  white-space: pre-wrap;
+
 `;

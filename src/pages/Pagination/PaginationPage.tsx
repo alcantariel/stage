@@ -18,14 +18,14 @@ const properties: Property[] = [
     description: 'Interface that have all information about the page.',
     type: '{ first: boolean, last: boolean, number: number, numberOfElements: number, size: number, totalElements: number, totalPages: number }',
     defaultValue: '',
-    required: true
+    required: 'true'
   },
   {
     name: 'onPageChange',
     description: 'Called when page number or size is changed.',
     type: '(pageRequest: { number: number, size: number }) => void',
     defaultValue: '',
-    required: true
+    required: 'true'
   }
 ];
 

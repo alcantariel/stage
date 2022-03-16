@@ -34,7 +34,7 @@ const StyledTable = styled.table`
   box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
   border-spacing: 0;
   color: ${props => props.theme.primary};
-  min-width: 95%;
+  min-width: 100%;
   text-align: left;
 
   thead,
