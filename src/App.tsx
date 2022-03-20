@@ -7,6 +7,9 @@ import { theme } from 'theme';
 import { defaultLocale, getLocale } from 'utils';
 
 const ButtonPage = lazy(() => import('pages/Button/ButtonPage'));
+const FormattedCurrencyPage = lazy(
+  () => import('pages/FormattedCurrency/FormattedCurrencyPage')
+);
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const PaginationPage = lazy(() => import('pages/Pagination/PaginationPage'));
 
@@ -28,6 +31,10 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/button" element={<ButtonPage />} />
+                  <Route
+                    path="/formatted-currency"
+                    element={<FormattedCurrencyPage />}
+                  />
                   <Route path="/pagination" element={<PaginationPage />} />
                 </Routes>
               </Wrapper>

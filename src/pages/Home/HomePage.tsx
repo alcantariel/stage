@@ -18,7 +18,7 @@ const CardsList = styled.div`
   width: 100vw;
 `;
 
-const Card = styled.div`
+const CardItem = styled.div`
   align-items: center;
   border: 1px solid ${props => props.theme.defaultBorderColor};
   border-radius: 4px;
@@ -48,27 +48,35 @@ const HomePage = () => {
     <CardsContainer>
       <SectionTitle>Components</SectionTitle>
       <CardsList>
-        <Card onClick={() => navigate('/button')}>Button</Card>
-        <Card onClick={() => navigate('/formatted-currency')}>
+        <CardItem onClick={() => navigate('/button')}>Button</CardItem>
+        <CardItem onClick={() => navigate('/formatted-currency')}>
           FormattedCurency
-        </Card>
-        <Card onClick={() => navigate('/input')}>Input</Card>
-        <Card onClick={() => navigate('/notification')}>Notification</Card>
-        <Card onClick={() => navigate('/pagination')}>Pagination</Card>
-        <Card onClick={() => navigate('/select')}>Select</Card>
-        <Card onClick={() => navigate('/spinner')}>Spinner</Card>
-        <Card onClick={() => navigate('/table')}>Table</Card>
+        </CardItem>
+        <CardItem onClick={() => navigate('/input')}>Input</CardItem>
+        <CardItem onClick={() => navigate('/notification')}>
+          Notification
+        </CardItem>
+        <CardItem onClick={() => navigate('/pagination')}>Pagination</CardItem>
+        <CardItem onClick={() => navigate('/select')}>Select</CardItem>
+        <CardItem onClick={() => navigate('/spinner')}>Spinner</CardItem>
+        <CardItem onClick={() => navigate('/table')}>Table</CardItem>
       </CardsList>
 
       <SectionTitle>Hooks</SectionTitle>
       <CardsList>
-        <Card onClick={() => navigate('/use-is-mounted')}>useIsMounted</Card>
-        <Card onClick={() => navigate('/use-listener')}>useListener</Card>
-        <Card onClick={() => navigate('/use-loading')}>useLoading</Card>
-        <Card onClick={() => navigate('/use-notification')}>
+        <CardItem onClick={() => navigate('/use-is-mounted')}>
+          useIsMounted
+        </CardItem>
+        <CardItem onClick={() => navigate('/use-listener')}>
+          useListener
+        </CardItem>
+        <CardItem onClick={() => navigate('/use-loading')}>useLoading</CardItem>
+        <CardItem onClick={() => navigate('/use-notification')}>
           useNotification
-        </Card>
-        <Card onClick={() => navigate('/use-window-size')}>useWindowSize</Card>
+        </CardItem>
+        <CardItem onClick={() => navigate('/use-window-size')}>
+          useWindowSize
+        </CardItem>
       </CardsList>
     </CardsContainer>
   );
