@@ -15,7 +15,7 @@ O intuito do projeto é estudar React, TypeScript e React Testing Library com o 
 
 <br>
 
-## Para executar o projeto local:
+## Para executar o projeto local
 
 `yarn` para instalar as dependências
 
