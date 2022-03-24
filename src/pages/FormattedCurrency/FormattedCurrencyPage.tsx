@@ -32,4 +32,4 @@ const FormattedCurrencyPage = () => {
   );
 };
 
-export { FormattedCurrencyPage, FormattedCurrencyPage as default };
+export default FormattedCurrencyPage;

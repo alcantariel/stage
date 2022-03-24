@@ -64,4 +64,4 @@ const PaginationPage = () => {
   );
 };
 
-export { PaginationPage, PaginationPage as default };
+export default PaginationPage;

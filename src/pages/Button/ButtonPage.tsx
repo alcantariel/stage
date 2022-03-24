@@ -97,4 +97,4 @@ const ButtonPage = () => {
   );
 };
 
-export { ButtonPage, ButtonPage as default };
+export default ButtonPage;
