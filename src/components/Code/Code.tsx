@@ -7,5 +7,4 @@ export const Code = styled.code`
   font-family: courier, monospace;
   padding: 0 0.5rem;
   white-space: pre-wrap;
-
 `;

@@ -11,6 +11,9 @@ const FormattedCurrencyPage = lazy(
   () => import('pages/FormattedCurrency/FormattedCurrencyPage')
 );
 const HomePage = lazy(() => import('pages/Home/HomePage'));
+const NotificationPage = lazy(
+  () => import('pages/Notification/NotificationPage')
+);
 const PaginationPage = lazy(() => import('pages/Pagination/PaginationPage'));
 
 const Wrapper = styled.div`
@@ -35,6 +38,7 @@ const App = () => {
                     path="/formatted-currency"
                     element={<FormattedCurrencyPage />}
                   />
+                  <Route path="/notification" element={<NotificationPage />} />
                   <Route path="/pagination" element={<PaginationPage />} />
                 </Routes>
               </Wrapper>
