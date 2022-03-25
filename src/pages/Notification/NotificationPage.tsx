@@ -38,24 +38,24 @@ const NotificationPage = () => {
         <Button
           width={100}
           variant="success"
+          className="mr-4 mt-2"
           onClick={() => handleNotification('success')}
-          style={{ marginRight: '1rem', marginTop: '4px' }}
         >
           Success
         </Button>
         <Button
           width={100}
           variant="danger"
+          className="mr-4 mt-2"
           onClick={() => handleNotification('error')}
-          style={{ marginRight: '1rem', marginTop: '4px' }}
         >
           Error
         </Button>
         <Button
           width={100}
           variant="warning"
+          className="mr-4 mt-2"
           onClick={() => handleNotification('warning')}
-          style={{ marginRight: '1rem', marginTop: '4px' }}
         >
           Warning
         </Button>
@@ -68,22 +68,22 @@ const NotificationPage = () => {
         </Button>
       </ComponentPage.Section>
       <ComponentPage.Section subtitle="Usage">
-        <div style={{ marginBottom: '1rem' }}>
-          <p>
+        <div className="mb-4">
+          <p className="mb-1">
             Inside your App component, add NotificationProvider at the top of
             hierarchy.
           </p>
           <Code>{'<NotificationProvider><App /></NotificationProvider>'}</Code>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <p>
+        <div className="mb-4">
+          <p className="mb-1">
             Inside of any page, add useNotification hook to obtain the method
             that dispatch notification actions.
           </p>
           <Code>{'const showNotification = useNotification();'}</Code>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <p>
+        <div className="mb-4">
+          <p className="mb-1">
             Dispatch notification when/where you want, they will appear at the
             top-right.
           </p>

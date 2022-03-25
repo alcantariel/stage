@@ -46,39 +46,19 @@ const ButtonPage = () => {
         When need to trigger actions or operations.
       </ComponentPage.Section>
       <ComponentPage.Section subtitle="Examples">
-        <Button
-          width={150}
-          variant="primary"
-          style={{ marginRight: '1rem', marginTop: '4px' }}
-        >
+        <Button width={150} variant="primary" className="mr-4 mt-2">
           Button
         </Button>
-        <Button
-          width={150}
-          variant="danger"
-          style={{ marginRight: '1rem', marginTop: '4px' }}
-        >
+        <Button width={150} variant="danger" className="mr-4 mt-2">
           Button
         </Button>
-        <Button
-          width={150}
-          variant="warning"
-          style={{ marginRight: '1rem', marginTop: '4px' }}
-        >
+        <Button width={150} variant="warning" className="mr-4 mt-2">
           Button
         </Button>
-        <Button
-          width={150}
-          variant="success"
-          style={{ marginRight: '1rem', marginTop: '4px' }}
-        >
+        <Button width={150} variant="success" className="mr-4 mt-2">
           Button
         </Button>
-        <Button
-          disabled
-          width={150}
-          style={{ marginRight: '1rem', marginTop: '4px' }}
-        >
+        <Button disabled width={150} className="mr-4 mt-2">
           Disabled
         </Button>
         <Button loading width={150}>
