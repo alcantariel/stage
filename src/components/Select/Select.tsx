@@ -12,11 +12,12 @@ interface SelectProps
     InputHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
   > {
-  error?: string;
-  hasError?: boolean;
-  label?: string;
-  name: string;
   ref?: any;
+  name: string;
+  error?: string;
+  label?: string;
+  hasError?: boolean;
+  defaultOptionLabel?: string;
 }
 
 interface SelectWithObjects<T> extends SelectProps {
@@ -26,7 +27,7 @@ interface SelectWithObjects<T> extends SelectProps {
 }
 
 interface SelectWithStrings extends SelectProps {
-  options: string[];
+  options: (number | string)[];
 }
 
 interface SelectControls {
@@ -72,7 +73,17 @@ export const initialControls: SelectControls = {
 };
 
 export const Select = <T extends any>(props: Props<T>) => {
-  const { label, name, value, error, onBlur, onChange, ...rest } = props;
+  const {
+    label,
+    name,
+    value,
+    error,
+    className,
+    defaultOptionLabel = 'Select',
+    onBlur,
+    onChange,
+    ...rest
+  } = props;
 
   const [controls, setControls] = useState(initialControls);
 
@@ -138,7 +149,7 @@ export const Select = <T extends any>(props: Props<T>) => {
   const renderStringOptions = () => {
     const { options } = props as SelectWithStrings;
 
-    return options.map((option: string, index: number) => (
+    return options.map((option: number | string, index: number) => (
       <option
         key={index}
         value={option}
@@ -152,7 +163,7 @@ export const Select = <T extends any>(props: Props<T>) => {
   const hasError = !!error && controls.blurred;
 
   return (
-    <>
+    <div className={className}>
       {label && (
         <Label htmlFor={name} data-testid={`label_select_${name}`}>
           {label}
@@ -169,13 +180,13 @@ export const Select = <T extends any>(props: Props<T>) => {
         data-testid={`select_${name}`}
       >
         <option value="" data-testid="option_default">
-          Selecione
+          {defaultOptionLabel}
         </option>
         {areOptionsWithObjects(props)
           ? renderObjectOptions()
           : renderStringOptions()}
       </StyledSelect>
       {hasError && <ErrorText>{error}</ErrorText>}
-    </>
+    </div>
   );
 };

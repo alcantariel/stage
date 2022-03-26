@@ -16,6 +16,7 @@ const NotificationPage = lazy(
   () => import('pages/Notification/NotificationPage')
 );
 const PaginationPage = lazy(() => import('pages/Pagination/PaginationPage'));
+const SelectPage = lazy(() => import('pages/Select/SelectPage'));
 
 const Wrapper = styled.div`
   background-color: ${props => props.theme.backgroundColor};
@@ -42,6 +43,7 @@ const App = () => {
                   <Route path="/input" element={<InputPage />} />
                   <Route path="/notification" element={<NotificationPage />} />
                   <Route path="/pagination" element={<PaginationPage />} />
+                  <Route path="/select" element={<SelectPage />} />
                 </Routes>
               </Wrapper>
             </Suspense>
