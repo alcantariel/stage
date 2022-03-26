@@ -45,6 +45,7 @@ export const StyledInput = styled.input<InputProps>`
 
   :disabled {
     background-color: ${props => props.theme.disabledColor};
+    cursor: not-allowed;
   }
 `;
 
@@ -57,8 +58,17 @@ const initialControls: InputControls = {
 
 export const Input = forwardRef(
   (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
-    const { id, name, label, error, onBlur, onClick, onChange, ...rest } =
-      props;
+    const {
+      id,
+      name,
+      label,
+      error,
+      className,
+      onBlur,
+      onClick,
+      onChange,
+      ...rest
+    } = props;
 
     const [controls, setControls] = useState(initialControls);
 
@@ -124,7 +134,7 @@ export const Input = forwardRef(
     const hasError = !!error && controls.blurred;
 
     return (
-      <>
+      <div className={className}>
         {label && (
           <Label htmlFor={id} data-testid={`label_${label}`}>
             {label}
@@ -142,7 +152,7 @@ export const Input = forwardRef(
           data-testid={`input_${name}`}
         />
         {hasError && <ErrorText>{error}</ErrorText>}
-      </>
+      </div>
     );
   }
 );
