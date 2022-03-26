@@ -1,4 +1,4 @@
-import { Button, Code, ComponentPage } from 'components';
+import { Button, ComponentPage } from 'components';
 import { Property } from 'types';
 
 const properties: Property[] = [
@@ -42,9 +42,6 @@ const properties: Property[] = [
 const ButtonPage = () => {
   return (
     <ComponentPage title="Button" description="Click me!">
-      <ComponentPage.Section subtitle="When to Use">
-        When need to trigger actions or operations.
-      </ComponentPage.Section>
       <ComponentPage.Section subtitle="Examples">
         <Button width={150} variant="primary" className="mr-4 mt-2">
           Button
@@ -64,13 +61,6 @@ const ButtonPage = () => {
         <Button loading width={150}>
           Button
         </Button>
-      </ComponentPage.Section>
-      <ComponentPage.Section subtitle="Usage">
-        <Code>
-          {
-            '<Button loading={false} variant="success" onClick={handleClick}>Apply</Button>'
-          }
-        </Code>
       </ComponentPage.Section>
       <ComponentPage.TableProperties properties={properties} />
     </ComponentPage>

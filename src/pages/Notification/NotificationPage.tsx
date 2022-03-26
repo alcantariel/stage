@@ -1,4 +1,4 @@
-import { Button, Code, ComponentPage, NotificationType } from 'components';
+import { Button, ComponentPage, NotificationType } from 'components';
 import { useNotification } from 'hooks';
 import { Property } from 'types';
 
@@ -31,9 +31,6 @@ const NotificationPage = () => {
 
   return (
     <ComponentPage title="Notification" description="Show me!">
-      <ComponentPage.Section subtitle="When to Use">
-        When need to trigger actions or operations.
-      </ComponentPage.Section>
       <ComponentPage.Section subtitle="Examples">
         <Button
           width={100}
@@ -66,33 +63,6 @@ const NotificationPage = () => {
         >
           Info
         </Button>
-      </ComponentPage.Section>
-      <ComponentPage.Section subtitle="Usage">
-        <div className="mb-4">
-          <p className="mb-1">
-            Inside your App component, add NotificationProvider at the top of
-            hierarchy.
-          </p>
-          <Code>{'<NotificationProvider><App /></NotificationProvider>'}</Code>
-        </div>
-        <div className="mb-4">
-          <p className="mb-1">
-            Inside of any page, add useNotification hook to obtain the method
-            that dispatch notification actions.
-          </p>
-          <Code>{'const showNotification = useNotification();'}</Code>
-        </div>
-        <div className="mb-4">
-          <p className="mb-1">
-            Dispatch notification when/where you want, they will appear at the
-            top-right.
-          </p>
-          <Code>
-            {
-              '<Button onClick={() => showNotification({ type: "success": message: "Notification" })}>Click Me</Button>'
-            }
-          </Code>
-        </div>
       </ComponentPage.Section>
       <ComponentPage.TableProperties properties={properties} />
     </ComponentPage>

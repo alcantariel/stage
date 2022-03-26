@@ -1,4 +1,4 @@
-import { Code, ComponentPage, Pagination } from 'components';
+import { ComponentPage, Pagination } from 'components';
 import { useState } from 'react';
 import { PageRequest, Page, Property } from 'types';
 
@@ -50,14 +50,8 @@ const PaginationPage = () => {
       description="Used to split a large list into several pages, and consequently load
     only one at time."
     >
-      <ComponentPage.Section subtitle="When to Use">
-        When the list is very large and will take a long time to load all items.
-      </ComponentPage.Section>
       <ComponentPage.Section subtitle="Examples">
         <Pagination page={page} onPageChange={handlePage} />
-      </ComponentPage.Section>
-      <ComponentPage.Section subtitle="Usage">
-        <Code>{'<Pagination page={page} onPageChange={handlePage} />'}</Code>
       </ComponentPage.Section>
       <ComponentPage.TableProperties properties={properties} />
     </ComponentPage>

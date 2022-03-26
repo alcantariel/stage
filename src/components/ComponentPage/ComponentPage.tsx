@@ -21,6 +21,7 @@ interface ComponentPageProps {
 
 interface SectionProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  ref?: any;
   children: ReactNode;
   subtitle: string;
 }
@@ -40,6 +41,10 @@ const PageContainer = styled(Container)`
   }
 `;
 
+const SectionContainer = styled.div`
+  display: block;
+`;
+
 export const ComponentPage = (props: ComponentPageProps) => {
   const { children, description, title } = props;
 
@@ -56,10 +61,10 @@ const Section = (props: SectionProps) => {
   const { children, subtitle, ...rest } = props;
 
   return (
-    <div {...rest}>
+    <SectionContainer {...rest}>
       <h2>{subtitle}</h2>
       {children}
-    </div>
+    </SectionContainer>
   );
 };
 
