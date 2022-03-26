@@ -11,7 +11,10 @@ import { Container } from '../Container';
 import { Table } from '../Table';
 
 interface ComponentPageProps {
-  children: ReactElement<SectionProps>[] | ReactElement<TablePropertiesProps>;
+  children:
+    | ReactElement<SectionProps>
+    | ReactElement<SectionProps>[]
+    | ReactElement<TablePropertiesProps>;
   description: string;
   title: string;
 }
