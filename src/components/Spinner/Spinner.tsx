@@ -3,8 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export interface SpinnerProps {
   size?: SizeProp;
+  className?: string;
 }
 
-export const Spinner = ({ size = 'lg', ...rest }: SpinnerProps) => {
-  return <FontAwesomeIcon spin icon="spinner" size={size} {...rest} />;
+export const Spinner = (props: SpinnerProps) => {
+  const { size = 'lg', className = '', ...rest } = props;
+
+  return (
+    <FontAwesomeIcon
+      {...rest}
+      spin
+      size={size}
+      icon="spinner"
+      className={className}
+    />
+  );
 };
