@@ -61,7 +61,8 @@
       "!**/node_modules/**",
       "!<rootDir>/src/reportWebVitals.ts",
       "!<rootDir>/src/App.tsx",
-      "!<rootDir>/src/index.tsx"
+      "!<rootDir>/src/index.tsx",
+      "!<rootDir>/src/pages/**"
     ],
     "coverageThreshold": {
       "global": {
