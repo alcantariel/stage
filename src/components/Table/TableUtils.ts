@@ -1,12 +1,12 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Direction, Sort } from 'types';
 
-export const initialSort: Sort = {
+export const getInitialSort = <N>(): Sort<N> => ({
   name: '',
   direction: 'sort'
-};
+});
 
-export const icons: Record<string, IconProp> = {
+export const icons: Record<Direction, IconProp> = {
   sort: 'sort',
   asc: 'sort-up',
   desc: 'sort-down'
@@ -18,11 +18,6 @@ export const nextDirection: Record<Direction, Direction> = {
   desc: 'asc'
 };
 
-export const getNextDirection = (
-  previousSort: Sort,
-  name: string
-): Direction => {
-  return previousSort.name === name
-    ? nextDirection[previousSort.direction]
-    : 'asc';
+export const getNextDirection = <N>(prevSort: Sort<N>, name: N): Direction => {
+  return prevSort.name === name ? nextDirection[prevSort.direction] : 'asc';
 };

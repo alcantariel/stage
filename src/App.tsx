@@ -18,10 +18,11 @@ const NotificationPage = lazy(
 const PaginationPage = lazy(() => import('pages/Pagination/PaginationPage'));
 const SelectPage = lazy(() => import('pages/Select/SelectPage'));
 const SpinnerPage = lazy(() => import('pages/Spinner/SpinnerPage'));
+const TablePage = lazy(() => import('pages/Table/TablePage'));
 
 const Wrapper = styled.div`
   background-color: ${props => props.theme.backgroundColor};
-  font-size: 18px;
+  font-size: 1rem;
   min-height: 100vh;
   min-width: 100vw;
 `;
@@ -46,6 +47,7 @@ const App = () => {
                   <Route path="/pagination" element={<PaginationPage />} />
                   <Route path="/select" element={<SelectPage />} />
                   <Route path="/spinner" element={<SpinnerPage />} />
+                  <Route path="/table" element={<TablePage />} />
                 </Routes>
               </Wrapper>
             </Suspense>

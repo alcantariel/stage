@@ -4,7 +4,7 @@ import { getNextDirection } from '../TableUtils';
 
 describe('TableUtils.test.tsx', () => {
   it('should return asc as default', () => {
-    const incorrectSort: Sort = {
+    const incorrectSort: Sort<'name'> = {
       name: 'name',
       direction: 'desc'
     };
@@ -13,7 +13,7 @@ describe('TableUtils.test.tsx', () => {
   });
 
   it('should return desc as next direction', () => {
-    const asc: Sort = {
+    const asc: Sort<'name'> = {
       name: 'name',
       direction: 'asc'
     };
@@ -22,7 +22,7 @@ describe('TableUtils.test.tsx', () => {
   });
 
   it('should return asc as next direction', () => {
-    const sort: Sort = {
+    const sort: Sort<'name'> = {
       name: 'name',
       direction: 'sort'
     };

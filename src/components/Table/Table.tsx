@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { Direction, Sort } from 'types';
 
 import { Column, ColumnProps } from './Column';
-import { getNextDirection, icons, initialSort } from './TableUtils';
+import { getNextDirection, icons, getInitialSort } from './TableUtils';
 
-interface Header {
-  name?: string;
+interface Header<N> {
+  name?: N;
   header?: ReactNode;
 }
 
@@ -17,13 +17,13 @@ interface Data<T> {
   data: (value: T, index: number) => ReactNode;
 }
 
-export interface TableProps<T> {
+export interface TableProps<T, N> {
   values: T[];
-  defaultSort?: Sort;
+  defaultSort?: Sort<N>;
   emptyMessage?: string;
-  children: ReactElement<ColumnProps<T>> | ReactElement<ColumnProps<T>>[];
+  children: ReactElement<ColumnProps<T, N>> | ReactElement<ColumnProps<T, N>>[];
   keyExtractor: (value: T, index: number) => string;
-  onSort?: (name: string, direction: Direction) => void;
+  onSort?: (name: N, direction: Direction) => void;
 }
 
 const StyledTable = styled.table`
@@ -57,10 +57,12 @@ const StyledTable = styled.table`
         border-style: solid;
         color: ${props => props.theme.textColor};
         padding: 8px;
-
+        
         svg {
           cursor: pointer;
           height: 12px;
+          user-select: none;
+          vertical-align: 0;
         }
 
         :last-child {
@@ -120,19 +122,21 @@ const StyledEmptyMessage = styled.tr`
   text-align: center;
 `;
 
-export const Table = <T extends any>(props: TableProps<T>) => {
+export const Table = <T,>(props: TableProps<T, keyof T | ''>) => {
+  type ColumnProps = keyof T | '';
+
   const {
     onSort,
     values,
     children,
     keyExtractor,
-    defaultSort = initialSort,
+    defaultSort = getInitialSort<ColumnProps>(),
     emptyMessage = 'Table is empty'
   } = props;
 
   const [sort, setSort] = useState(defaultSort);
   const [ths, tds] = useMemo(() => {
-    const ths: Header[] = [];
+    const ths: Header<ColumnProps>[] = [];
     const tds: Data<T>[] = [];
 
     Children.forEach(children, child => {
@@ -147,7 +151,7 @@ export const Table = <T extends any>(props: TableProps<T>) => {
     return [ths, tds];
   }, [children]);
 
-  const handleSort = (name: string): void => {
+  const handleSort = (name: ColumnProps): void => {
     setSort(prevSort => {
       const direction = getNextDirection(prevSort, name);
 
@@ -164,7 +168,7 @@ export const Table = <T extends any>(props: TableProps<T>) => {
     <StyledTable>
       <thead>
         <tr>
-          {ths.map((th: Header, index: number) => {
+          {ths.map((th: Header<ColumnProps>, index: number) => {
             const thKey = `${th.header}_${index}`;
             const direction = th.name === sort.name ? sort.direction : 'sort';
 
@@ -173,7 +177,7 @@ export const Table = <T extends any>(props: TableProps<T>) => {
                 {th.name && onSort && (
                   <FontAwesomeIcon
                     icon={icons[direction]}
-                    onClick={() => handleSort(th.name!)}
+                    onClick={() => handleSort(th.name as ColumnProps)}
                     data-testid={`${thKey}_${direction}`}
                   />
                 )}{' '}

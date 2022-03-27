@@ -1,15 +1,11 @@
 import { ReactNode } from 'react';
 
-interface AnyObject {
-  [key: string]: any;
-}
-
-export interface ColumnProps<T> {
-  name?: string;
+export interface ColumnProps<T, N> {
+  name?: N;
   header?: ReactNode;
   hidden?: boolean;
   width?: string;
   data: (value: T, index: number) => ReactNode;
 }
 
-export const Column = <T extends AnyObject>(props: ColumnProps<T>) => null;
+export const Column = <T,>(props: ColumnProps<T, keyof T | ''>) => null;
