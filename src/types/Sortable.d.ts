@@ -1,6 +1,6 @@
 export type Direction = 'asc' | 'desc' | 'sort';
 
 export interface Sort<N> {
-  name: N | ''; // table column name
+  name: N;
   direction: Direction;
 }

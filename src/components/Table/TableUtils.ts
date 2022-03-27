@@ -2,7 +2,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { Direction, Sort } from 'types';
 
 export const getInitialSort = <N>(): Sort<N> => ({
-  name: '',
+  name: '' as any,
   direction: 'sort'
 });
 

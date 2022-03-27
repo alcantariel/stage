@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { darken, lighten } from 'polished';
 import {
   Children,
-  CSSProperties,
+  DetailedHTMLProps,
   ReactElement,
   ReactNode,
+  TableHTMLAttributes,
   useMemo,
   useState
 } from 'react';
@@ -24,11 +25,15 @@ interface Data<T> {
   data: (value: T, index: number) => ReactNode;
 }
 
-export interface TableProps<T, N> {
+export interface TableProps<T, N>
+  extends DetailedHTMLProps<
+    TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+  > {
+  ref?: any;
   values: T[];
   defaultSort?: Sort<N>;
   emptyMessage?: string;
-  style?: CSSProperties;
   children: ReactElement<ColumnProps<T, N>> | ReactElement<ColumnProps<T, N>>[];
   keyExtractor: (value: T, index: number) => string;
   onSort?: (name: N, direction: Direction) => void;
@@ -134,13 +139,13 @@ export const Table = <T,>(props: TableProps<T, keyof T>) => {
   type ColumnProps = keyof T;
 
   const {
-    onSort,
-    style,
     values,
     children,
-    keyExtractor,
+    emptyMessage = 'Table is empty',
     defaultSort = getInitialSort<ColumnProps>(),
-    emptyMessage = 'Table is empty'
+    onSort,
+    keyExtractor,
+    ...rest
   } = props;
 
   const [sort, setSort] = useState(defaultSort);
@@ -174,7 +179,7 @@ export const Table = <T,>(props: TableProps<T, keyof T>) => {
   };
 
   return (
-    <StyledTable style={style}>
+    <StyledTable {...rest}>
       <thead>
         <tr>
           {ths.map((th: Header<ColumnProps>, index: number) => {
