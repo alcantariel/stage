@@ -42,7 +42,7 @@ const properties: Property[] = [
 const ButtonPage = () => {
   return (
     <ComponentPage title="Button" description="Click me!">
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <Button width={150} variant="primary" className="mr-4 mt-2">
           Button
         </Button>

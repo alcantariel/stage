@@ -13,11 +13,15 @@ export interface ActionsGroupProps
 }
 
 const StyledActionsGroup = styled.div`
-  background-color: ${props => props.theme.backgroundColor};
   border-bottom-left-radius: 16px;
   border-top-left-radius: 16px;
   float: right;
   padding: 3px 8px 3px 8px;
+
+  :hover {
+    background-color: ${props => props.theme.backgroundColor};
+    transition: 0.3s ease;
+  }
 `;
 
 export const ActionsGroup = forwardRef(

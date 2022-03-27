@@ -23,7 +23,7 @@ interface SectionProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   ref?: any;
   children: ReactNode;
-  subtitle: string;
+  title: string;
 }
 
 interface TablePropertiesProps {
@@ -31,11 +31,11 @@ interface TablePropertiesProps {
 }
 
 const PageContainer = styled(Container)`
-  h1 {
+  h2 {
     margin-bottom: 1rem;
   }
 
-  h2 {
+  h3 {
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
@@ -50,7 +50,7 @@ export const ComponentPage = (props: ComponentPageProps) => {
 
   return (
     <PageContainer>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       <p>{description}</p>
       {children}
     </PageContainer>
@@ -58,11 +58,11 @@ export const ComponentPage = (props: ComponentPageProps) => {
 };
 
 const Section = (props: SectionProps) => {
-  const { children, subtitle, ...rest } = props;
+  const { children, title, ...rest } = props;
 
   return (
     <SectionContainer {...rest}>
-      <h2>{subtitle}</h2>
+      <h3>{title}</h3>
       {children}
     </SectionContainer>
   );
@@ -72,7 +72,7 @@ const TableProperties = (props: TablePropertiesProps) => {
   const { properties } = props;
 
   return (
-    <Section subtitle="Properties">
+    <Section title="Properties">
       <Table values={properties} keyExtractor={property => property.name}>
         <Table.Column
           header="Name"

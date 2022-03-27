@@ -6,8 +6,8 @@ import {
   Input,
   Table
 } from 'components';
-import { FormEvent, useState } from 'react';
-import { Direction, Property } from 'types';
+import { FormEvent, useEffect, useState } from 'react';
+import { Direction, Property, Sort } from 'types';
 
 interface TodoItem {
   id: number;
@@ -62,6 +62,14 @@ const properties: Property[] = [
 const TablePage = () => {
   const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [sort, setSort] = useState<Sort<keyof TodoItem>>({
+    name: 'id',
+    direction: 'asc'
+  });
+
+  useEffect(() => {
+    handleSort(sort.name, sort.direction);
+  }, [todos]);
 
   const add = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -84,6 +92,8 @@ const TablePage = () => {
   };
 
   const handleSort = (name: keyof TodoItem, direction: Direction): void => {
+    setSort({ name, direction });
+
     const sortFn = (a: TodoItem, b: TodoItem) =>
       direction === 'asc'
         ? a[name].toString().localeCompare(b[name].toString())
@@ -100,7 +110,7 @@ const TablePage = () => {
 
   return (
     <ComponentPage title="Table" description="List all of your items.">
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <form onSubmit={add}>
           <div style={{ display: 'flex' }}>
             <Input
@@ -110,6 +120,7 @@ const TablePage = () => {
               name="description"
               label="Description"
               style={{ width: 300 }}
+              placeholder="What y'll do?"
               onChange={event => setTodo(event.target.value)}
             />
             <Button className="mt-6 ml-4 mb-4" type="submit">
@@ -119,8 +130,8 @@ const TablePage = () => {
         </form>
         <Table
           values={todos}
+          defaultSort={sort}
           onSort={handleSort}
-          defaultSort={{ direction: 'asc', name: 'id' }}
           keyExtractor={(item: TodoItem) => `${item.id}`}
         >
           <Table.Column

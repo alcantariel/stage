@@ -21,7 +21,6 @@ export interface ActionButtonProps
 }
 
 const StyledActionButton = styled.button<ButtonProps>`
-  background-color: ${props => props.theme.backgroundColor};
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -34,6 +33,7 @@ const StyledActionButton = styled.button<ButtonProps>`
 
   :hover,
   :focus {
+    background-color: ${props => props.theme.backgroundColor};
     box-shadow: 0 0 0 1px ${props => props.theme.boxShadowColor};
     outline: none;
   }

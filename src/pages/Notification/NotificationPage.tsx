@@ -31,7 +31,7 @@ const NotificationPage = () => {
 
   return (
     <ComponentPage title="Notification" description="Show me!">
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <Button
           width={100}
           variant="success"

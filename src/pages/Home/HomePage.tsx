@@ -61,23 +61,6 @@ const HomePage = () => {
         <CardItem onClick={() => navigate('/spinner')}>Spinner</CardItem>
         <CardItem onClick={() => navigate('/table')}>Table</CardItem>
       </CardsList>
-
-      <SectionTitle>Hooks</SectionTitle>
-      <CardsList>
-        <CardItem onClick={() => navigate('/use-is-mounted')}>
-          useIsMounted
-        </CardItem>
-        <CardItem onClick={() => navigate('/use-listener')}>
-          useListener
-        </CardItem>
-        <CardItem onClick={() => navigate('/use-loading')}>useLoading</CardItem>
-        <CardItem onClick={() => navigate('/use-notification')}>
-          useNotification
-        </CardItem>
-        <CardItem onClick={() => navigate('/use-window-size')}>
-          useWindowSize
-        </CardItem>
-      </CardsList>
     </CardsContainer>
   );
 };

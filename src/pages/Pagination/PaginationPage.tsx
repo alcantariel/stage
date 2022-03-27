@@ -50,7 +50,7 @@ const PaginationPage = () => {
       description="Used to split a large list into several pages, and consequently load
     only one at time."
     >
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <Pagination page={page} onPageChange={handlePage} />
       </ComponentPage.Section>
       <ComponentPage.TableProperties properties={properties} />

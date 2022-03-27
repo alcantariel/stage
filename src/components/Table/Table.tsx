@@ -69,7 +69,7 @@ const StyledTable = styled.table`
         border-width: 0 1px 2px 0;
         border-style: solid;
         color: ${props => props.theme.textColor};
-        padding: 8px;
+        padding: 4px;
         
         svg {
           cursor: pointer;
@@ -98,7 +98,7 @@ const StyledTable = styled.table`
       }
 
       td {
-        padding: 4px 0 4px 8px;
+        padding: 4px 0 4px 4px;
 
         :last-child {
           width: 120px;

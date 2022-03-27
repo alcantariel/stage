@@ -43,7 +43,7 @@ const InputPage = () => {
 
   return (
     <ComponentPage title="Input" description="Wanna type?">
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <Input
           name="name"
           label="Name"

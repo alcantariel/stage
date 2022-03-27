@@ -17,7 +17,7 @@ const FormattedCurrencyPage = () => {
       title="Formatted Currency"
       description="Used to format a number in currency."
     >
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <FormattedCurrency value={10} />
       </ComponentPage.Section>
       <ComponentPage.TableProperties properties={properties} />

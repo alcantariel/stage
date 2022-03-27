@@ -14,7 +14,7 @@ const properties: Property[] = [
 const SpinnerPage = () => {
   return (
     <ComponentPage title="Spinner" description="...">
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <Spinner size="xs" className="mr-4" />
         <Spinner size="sm" className="mr-4" />
         <Spinner size="lg" />

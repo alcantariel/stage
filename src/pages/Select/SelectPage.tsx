@@ -73,7 +73,7 @@ const SelectPage = () => {
 
   return (
     <ComponentPage title="Select" description="Make your choice.">
-      <ComponentPage.Section subtitle="Examples">
+      <ComponentPage.Section title="Examples">
         <Select
           name="name"
           label="Quantity"
