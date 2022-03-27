@@ -35,7 +35,7 @@ const StyledButton = styled.button<ButtonProps>`
   border-radius: 4px;
   color: #ffffff;
   cursor: pointer;
-  height: 36px;
+  height: 30px;
   letter-spacing: 0.5px;
   padding: 0 16px;
   text-align: center;

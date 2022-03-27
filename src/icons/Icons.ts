@@ -4,6 +4,7 @@ export {
   faSun,
   faCheck,
   faTimes,
+  faTrash,
   faExclamation,
   faInfo,
   faPencilAlt,

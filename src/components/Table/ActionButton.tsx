@@ -5,7 +5,6 @@ import {
   DetailedHTMLProps,
   ForwardedRef,
   forwardRef,
-  MouseEvent,
   ReactNode
 } from 'react';
 import styled from 'styled-components';
@@ -19,9 +18,6 @@ export interface ActionButtonProps
   > {
   children: ReactNode;
   icon: IconProp;
-  onClick?: (
-    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
-  ) => void;
 }
 
 const StyledActionButton = styled.button<ButtonProps>`
@@ -50,8 +46,8 @@ const StyledActionButton = styled.button<ButtonProps>`
     background-color: ${props => props.theme.primary};
     border-radius: 4px;
     color: #fff;
-    margin-left: -40px;
-    margin-top: -20px;
+    margin-left: -30px;
+    margin-top: -30px;
     opacity: 0;
     padding: 4px;
     pointer-events: none;

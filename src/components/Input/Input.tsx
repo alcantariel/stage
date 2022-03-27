@@ -35,6 +35,7 @@ export const StyledInput = styled.input<InputProps>`
     ${props =>
       props.hasError ? props.theme.errorColor : props.theme.defaultBorderColor};
   border-radius: 4px;
+  height: 30px;
   padding: 8px;
   width: 100%;
 

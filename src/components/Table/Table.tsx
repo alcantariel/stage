@@ -1,6 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { darken, lighten } from 'polished';
-import { Children, ReactElement, ReactNode, useMemo, useState } from 'react';
+import {
+  Children,
+  CSSProperties,
+  ReactElement,
+  ReactNode,
+  useMemo,
+  useState
+} from 'react';
 import styled from 'styled-components';
 import { Direction, Sort } from 'types';
 
@@ -21,6 +28,7 @@ export interface TableProps<T, N> {
   values: T[];
   defaultSort?: Sort<N>;
   emptyMessage?: string;
+  style?: CSSProperties;
   children: ReactElement<ColumnProps<T, N>> | ReactElement<ColumnProps<T, N>>[];
   keyExtractor: (value: T, index: number) => string;
   onSort?: (name: N, direction: Direction) => void;
@@ -34,7 +42,7 @@ const StyledTable = styled.table`
   box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
   border-spacing: 0;
   color: ${props => props.theme.primary};
-  min-width: 100%;
+  width: 100%;
   text-align: left;
 
   thead,
@@ -122,11 +130,12 @@ const StyledEmptyMessage = styled.tr`
   text-align: center;
 `;
 
-export const Table = <T,>(props: TableProps<T, keyof T | ''>) => {
-  type ColumnProps = keyof T | '';
+export const Table = <T,>(props: TableProps<T, keyof T>) => {
+  type ColumnProps = keyof T;
 
   const {
     onSort,
+    style,
     values,
     children,
     keyExtractor,
@@ -165,7 +174,7 @@ export const Table = <T,>(props: TableProps<T, keyof T | ''>) => {
   };
 
   return (
-    <StyledTable>
+    <StyledTable style={style}>
       <thead>
         <tr>
           {ths.map((th: Header<ColumnProps>, index: number) => {
@@ -195,8 +204,8 @@ export const Table = <T,>(props: TableProps<T, keyof T | ''>) => {
 
             return (
               <tr key={extractedKey}>
-                {tds.map((td: Data<T>, index: number) => {
-                  const tdKey = `${extractedKey}_${index}`;
+                {tds.map((td: Data<T>, tdIndex: number) => {
+                  const tdKey = `${extractedKey}_${tdIndex}`;
 
                   return (
                     <td key={tdKey} data-testid={tdKey} width={td.width}>
