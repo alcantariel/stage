@@ -31,6 +31,10 @@ interface TablePropertiesProps {
 }
 
 const PageContainer = styled(Container)`
+  * {
+    color: ${props => props.theme.textColor};
+  }
+
   h2 {
     margin-bottom: 1rem;
   }

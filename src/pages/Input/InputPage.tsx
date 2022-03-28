@@ -52,15 +52,6 @@ const InputPage = () => {
           onChange={event => setName(event.target.value)}
           error={errors.name ? 'name is required' : ''}
         />
-        <Input
-          disabled
-          name="name"
-          label="Name"
-          placeholder="Disabled"
-          className="mt-4"
-          error={errors.name ? 'name is required' : ''}
-          onChange={event => setName(event.target.value)}
-        />
       </ComponentPage.Section>
       <ComponentPage.TableProperties properties={properties} />
     </ComponentPage>

@@ -1,4 +1,5 @@
 import { ErrorText, Label } from 'components';
+import { lighten } from 'polished';
 import {
   ChangeEvent,
   DetailedHTMLProps,
@@ -42,14 +43,15 @@ export const StyledSelect = styled.select<SelectProps>`
   background-color: ${props => props.theme.backgroundColor};
   border: 1px solid
     ${props =>
-      props.hasError ? props.theme.errorColor : props.theme.defaultBorderColor};
+      props.hasError ? props.theme.errorColor : props.theme.borderColor};
   border-radius: 4px;
+  color: ${props => props.theme.textColor};
   height: 30px;
   padding: 4px;
   width: 100%;
 
   :focus {
-    border: 1px solid ${props => props.theme.primary};
+    border: 1px solid ${props => lighten('.2', props.theme.borderColor)};
     outline: none;
   }
 
@@ -179,7 +181,7 @@ export const Select = <T extends any>(props: Props<T>) => {
         onChange={handleChange}
         data-testid={`select_${name}`}
       >
-        <option value="" data-testid="option_default">
+        <option value={undefined} data-testid="option_default">
           {defaultOptionLabel}
         </option>
         {areOptionsWithObjects(props)

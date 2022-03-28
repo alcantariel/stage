@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledInput, StyledSelect } from 'components';
-import { darken, lighten } from 'polished';
 import React, { ChangeEvent, useEffect, useState, KeyboardEvent } from 'react';
 import styled from 'styled-components';
+import { applyHover } from 'theme';
 import { PageRequest, Page } from 'types';
 import { isNumber, KeyboardCodeUtils } from 'utils';
 
@@ -21,7 +21,7 @@ const PaginationItems = styled.div`
 
 const PaginationItem = styled.div`
   align-items: center;
-  background-color: ${props => lighten('.1', props.theme.infoColor)};
+  background-color: ${props => props.theme.primary};
   border-radius: 4px;
   color: ${props => props.theme.textColor};
   display: flex;
@@ -34,13 +34,13 @@ const PaginationItem = styled.div`
   width: 30px;
 
   :hover {
-    background-color: ${props => darken('.1', props.theme.defaultBorderColor)};
+    background-color: ${props => applyHover(props.theme.primary)};
     cursor: pointer;
   }
 `;
 
 const PaginationInput = styled(props => <StyledInput {...props} />)`
-  border: 1px solid ${props => props.theme.defaultBorderColor};
+  border: 1px solid ${props => props.theme.borderColor};
   font-weight: inherit;
   font-size: inherit;
   height: 30px;

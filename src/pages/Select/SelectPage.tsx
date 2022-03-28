@@ -68,7 +68,7 @@ const SelectPage = () => {
   const [errors, setErrors] = useState({ quantity: '' });
 
   useEffect(() => {
-    setErrors({ quantity: !quantity ? 'quantity is required' : '' });
+    setErrors({ quantity: quantity >= 0 ? '' : 'quantity is required' });
   }, [quantity]);
 
   return (
@@ -81,13 +81,6 @@ const SelectPage = () => {
           options={[0, 1, 2]}
           error={errors.quantity}
           onChange={event => setQuantity(Number(event.target.value))}
-        />
-        <Select
-          disabled
-          name="name"
-          options={[]}
-          label="Quantity"
-          className="mt-4"
         />
       </ComponentPage.Section>
       <ComponentPage.TableProperties properties={properties} />

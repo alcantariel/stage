@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { darken, lighten } from 'polished';
+import { darken } from 'polished';
 import {
   Children,
   DetailedHTMLProps,
@@ -10,6 +10,7 @@ import {
   useState
 } from 'react';
 import styled from 'styled-components';
+import { applyHover } from 'theme';
 import { Direction, Sort } from 'types';
 
 import { Column, ColumnProps } from './Column';
@@ -41,12 +42,12 @@ export interface TableProps<T, N>
 
 const StyledTable = styled.table`
   background-color: ${props => props.theme.backgroundColor};
-  border: 1px solid ${props => lighten('.1', props.theme.primary)};
+  border: 1px solid ${props => props.theme.borderColor};
   border-collapse: separate;
   border-radius: 6px;
   box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
   border-spacing: 0;
-  color: ${props => props.theme.primary};
+  color: ${props => props.theme.textColor};
   width: 100%;
   text-align: left;
 
@@ -65,7 +66,7 @@ const StyledTable = styled.table`
   thead {
     tr {
       th {
-        border-bottom-color: ${props => lighten('.1', props.theme.primary)};
+        border-color: ${props => props.theme.borderColor};
         border-width: 0 1px 2px 0;
         border-style: solid;
         color: ${props => props.theme.textColor};
@@ -98,7 +99,7 @@ const StyledTable = styled.table`
       }
 
       td {
-        padding: 4px 0 4px 4px;
+        padding: 4px 0 4px 8px;
 
         :last-child {
           width: 120px;
@@ -119,11 +120,11 @@ const StyledTable = styled.table`
 
       :nth-child(even) {
         background-color: ${props =>
-          darken('.05', props.theme.backgroundColor)}};
+          darken('.03', props.theme.backgroundColor)}};
 
         :hover {
           background-color: ${props =>
-            darken('.1', props.theme.backgroundColor)}};
+            applyHover(props.theme.backgroundColor)}};
           transition: all 0.2s linear;
         }
       }

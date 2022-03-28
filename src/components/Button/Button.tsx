@@ -1,5 +1,4 @@
 import { Spinner } from 'components';
-import { lighten } from 'polished';
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
@@ -8,7 +7,7 @@ import {
   MouseEvent
 } from 'react';
 import styled from 'styled-components';
-import { theme } from 'theme';
+import { applyHover, theme } from 'theme';
 
 export type ButtonVariant = keyof typeof variants;
 
@@ -33,10 +32,11 @@ const StyledButton = styled.button<ButtonProps>`
   background: ${props => variants[props.variant!]};
   border: none;
   border-radius: 4px;
-  color: #ffffff;
+  color: ${props => props.theme.textColor};
   cursor: pointer;
   height: 30px;
   letter-spacing: 0.5px;
+  outline: none;
   padding: 0 16px;
   text-align: center;
   transition: 0.3s ease;
@@ -51,9 +51,8 @@ const StyledButton = styled.button<ButtonProps>`
   :focus,
   :hover {
     background: ${props =>
-      !props.disabled ? lighten('.02', variants[props.variant!]) : ''};
+      !props.disabled ? applyHover(variants[props.variant!]) : ''};
     box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
-    outline-color: ${props => variants[props.variant!]};
   }
 `;
 

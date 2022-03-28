@@ -1,7 +1,7 @@
 import { Container } from 'components';
-import { lighten } from 'polished';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+import { applyHover } from 'theme';
 
 const CardsContainer = styled(Container)`
   align-items: center;
@@ -20,7 +20,8 @@ const CardsList = styled.div`
 
 const CardItem = styled.div`
   align-items: center;
-  border: 1px solid ${props => props.theme.defaultBorderColor};
+  background-color: ${props => props.theme.primary};
+  border: 1px solid ${props => props.theme.borderColor};
   border-radius: 4px;
   display: flex;
   height: 2rem;
@@ -32,7 +33,7 @@ const CardItem = styled.div`
   min-width: 22%;
 
   :hover {
-    background-color: ${props => lighten('.1', props.theme.defaultBorderColor)};
+    background-color: ${props => applyHover(props.theme.primary)};
     cursor: pointer;
   }
 `;

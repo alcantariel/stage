@@ -8,6 +8,7 @@ import {
   ReactNode
 } from 'react';
 import styled from 'styled-components';
+import { applyHover } from 'theme';
 
 import { ButtonProps } from '../Button';
 
@@ -21,19 +22,16 @@ export interface ActionButtonProps
 }
 
 const StyledActionButton = styled.button<ButtonProps>`
+  background-color: ${props => props.theme.primary};
   border: none;
   border-radius: 50%;
   cursor: pointer;
   margin-right: 8px;
   padding: 5px;
 
-  svg {
-    color: ${props => props.theme.textColor};
-  }
-
   :hover,
   :focus {
-    background-color: ${props => props.theme.backgroundColor};
+    background-color: ${props => applyHover(props.theme.primary)}};
     box-shadow: 0 0 0 1px ${props => props.theme.boxShadowColor};
     outline: none;
   }
@@ -45,7 +43,7 @@ const StyledActionButton = styled.button<ButtonProps>`
   p {
     background-color: ${props => props.theme.primary};
     border-radius: 4px;
-    color: #fff;
+    color: ${props => props.theme.textColor};
     margin-left: -30px;
     margin-top: -30px;
     opacity: 0;

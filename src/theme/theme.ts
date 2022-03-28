@@ -1,17 +1,14 @@
-import { Theme } from 'types';
-
-export const theme: Theme = {
-  backgroundColor: '#f1f1f1',
+export const theme = {
+  backgroundColor: '#222',
   boxShadowColor: 'rgba(189, 192, 207, 0.5)',
-  defaultBorderColor: 'rgba(189, 192, 207, 0.5)',
-  defaultSelectedBorderColor: '#979797',
+  borderColor: 'rgba(189, 192, 207, 0.5)',
   disabledColor: '#c9d4e7',
   disabledTextColor: '#666',
   errorColor: '#ff5b5b',
   infoColor: '#bbc',
-  primary: '#151515',
-  shadowColor: 'rgba(232, 232, 232, .5)',
+  primary: '#111',
+  shadowColor: 'rgba(0, 0, 0, 0)',
   successColor: '#63cf80',
-  textColor: '#222331',
+  textColor: '#fff',
   warningColor: '#ffc107'
-};
+} as const;

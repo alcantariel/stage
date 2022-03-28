@@ -1,4 +1,5 @@
 import { ErrorText, Label } from 'components';
+import { lighten } from 'polished';
 import {
   ChangeEvent,
   DetailedHTMLProps,
@@ -33,14 +34,15 @@ export const StyledInput = styled.input<InputProps>`
   background-color: ${props => props.theme.backgroundColor};
   border: 1px solid
     ${props =>
-      props.hasError ? props.theme.errorColor : props.theme.defaultBorderColor};
+      props.hasError ? props.theme.errorColor : props.theme.borderColor};
   border-radius: 4px;
+  color: ${props => props.theme.textColor};
   height: 30px;
   padding: 8px;
   width: 100%;
 
   :focus {
-    border: 1px solid ${props => props.theme.primary};
+    border: 1px solid ${props => lighten('.2', props.theme.borderColor)};
     outline: none;
   }
 
