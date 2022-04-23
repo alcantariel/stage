@@ -1,5 +1,11 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  library,
+  IconDefinition,
+  IconPack
+} from '@fortawesome/fontawesome-svg-core';
 
 import * as icons from './Icons';
 
-library.add(icons);
+type IconDefinitionOrPack = IconDefinition | IconPack;
+
+library.add(icons as IconDefinitionOrPack);
