@@ -6,6 +6,6 @@ import {
 
 import * as icons from './Icons';
 
-type IconDefinitionOrPack = IconDefinition | IconPack;
+export type IconDefinitionOrPack = IconDefinition | IconPack;
 
 library.add(icons as IconDefinitionOrPack);
