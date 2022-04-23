@@ -1,6 +1,6 @@
-import { act, fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { render } from 'utils/testing';
 
 import { Input } from './Input';
@@ -43,7 +43,7 @@ describe('Input.test.tsx', () => {
     expect(onBlur).toHaveBeenCalled();
   });
 
-  it('should handle change', () => {
+  it('should handle change', async () => {
     let value = '';
     const onChange = jest
       .fn()
@@ -55,18 +55,20 @@ describe('Input.test.tsx', () => {
       <Input name="name" label="Name" value={value} onChange={onChange} />
     );
 
-    userEvent.type(screen.getByTestId('input_name'), 'gabriel');
+    await waitFor(() =>
+      userEvent.type(screen.getByTestId('input_name'), 'gabriel')
+    );
 
     expect(value).toEqual('gabriel');
     expect(onChange).toHaveBeenCalled();
   });
 
-  it('should handle click', () => {
+  it('should handle click', async () => {
     const onClick = jest.fn();
 
     render(<Input name="name" label="Name" onClick={onClick} />);
 
-    userEvent.click(screen.getByTestId('input_name'));
+    await waitFor(() => userEvent.click(screen.getByTestId('input_name')));
 
     expect(onClick).toHaveBeenCalled();
   });

@@ -1,5 +1,6 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { render } from 'utils/testing';
 
 import { Select } from './Select';
 
@@ -24,7 +25,7 @@ describe('Select.test.tsx', () => {
       expect(screen.getByTestId('label_select_album')).toHaveTextContent(
         'Album'
       );
-      expect(screen.getByTestId('select_album')).toHaveValue('');
+      expect(screen.getByTestId('select_album')).toHaveValue('Select');
       expect(screen.queryByTestId('error_test_album')).not.toBeInTheDocument();
     });
 
@@ -44,7 +45,7 @@ describe('Select.test.tsx', () => {
       expect(
         screen.queryByTestId('label_select_album')
       ).not.toBeInTheDocument();
-      expect(screen.getByTestId('select_album')).toHaveValue('');
+      expect(screen.getByTestId('select_album')).toHaveValue('Select');
       expect(screen.queryByTestId('error_test_album')).not.toBeInTheDocument();
     });
 
@@ -66,7 +67,7 @@ describe('Select.test.tsx', () => {
       expect(screen.getByTestId('select_album')).toHaveValue('ASTROWORLD');
     });
 
-    it('should change select value', () => {
+    it('should change select value', async () => {
       const onBlurFn = jest.fn();
       const onChangeFn = jest.fn();
 
@@ -80,14 +81,14 @@ describe('Select.test.tsx', () => {
         />
       );
 
-      expect(screen.getByTestId('select_album')).toHaveValue('');
+      expect(screen.getByTestId('select_album')).toHaveValue('Select');
 
-      act(() => {
+      await waitFor(() =>
         userEvent.selectOptions(
           screen.getByTestId('select_album'),
           'ASTROWORLD'
-        );
-      });
+        )
+      );
 
       expect(screen.getByTestId('select_album')).toHaveValue('ASTROWORLD');
       expect(onChangeFn).toHaveBeenCalled();
@@ -108,7 +109,7 @@ describe('Select.test.tsx', () => {
         />
       );
 
-      expect(screen.getByTestId('select_album')).toHaveValue('');
+      expect(screen.getByTestId('select_album')).toHaveValue('Select');
       expect(screen.queryByTestId('error_test_album')).not.toBeInTheDocument();
       expect(onBlurFn).not.toHaveBeenCalled();
     });
@@ -128,14 +129,14 @@ describe('Select.test.tsx', () => {
         />
       );
 
-      expect(screen.getByTestId('select_album')).toHaveValue('');
+      expect(screen.getByTestId('select_album')).toHaveValue('Select');
       expect(screen.queryByTestId('error_test_album')).not.toBeInTheDocument();
 
       act(() => {
         fireEvent.blur(screen.getByTestId('select_album'));
       });
 
-      expect(screen.getByTestId('select_album')).toHaveValue('');
+      expect(screen.getByTestId('select_album')).toHaveValue('Select');
       expect(screen.queryByText('album is required')).toBeInTheDocument();
     });
   });
@@ -165,7 +166,7 @@ describe('Select.test.tsx', () => {
       expect(screen.getByTestId('label_select_album')).toHaveTextContent(
         'Album'
       );
-      expect(screen.getByTestId('select_album')).toHaveValue('');
+      expect(screen.getByTestId('select_album')).toHaveValue('Select');
       expect(screen.queryByTestId('error_test_album')).not.toBeInTheDocument();
     });
 

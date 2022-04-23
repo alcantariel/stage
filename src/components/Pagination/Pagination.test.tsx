@@ -81,21 +81,19 @@ describe('Pagination.test.tsx', () => {
     expect(onPageChangeFn).toHaveBeenCalledWith({ number: 1, size: 20 });
   });
 
-  it('should change page when click next page', () => {
+  it('should change page when click next page', async () => {
     const onPageChangeFn = jest.fn();
 
     render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
-    act(() => {
-      userEvent.click(screen.getByTestId('angle_right'));
-    });
+    await waitFor(() => userEvent.click(screen.getByTestId('angle_right')));
 
     expect(screen.getByTestId('page_input')).toHaveValue('2');
     expect(onPageChangeFn).toHaveBeenCalledTimes(2);
     expect(onPageChangeFn).toHaveBeenCalledWith({ number: 2, size: 20 });
   });
 
-  it('should change page when click previous page', () => {
+  it('should change page when click previous page', async () => {
     const onPageChangeFn = jest.fn();
 
     render(
@@ -107,25 +105,21 @@ describe('Pagination.test.tsx', () => {
 
     expect(screen.getByTestId('page_input')).toHaveValue('25');
 
-    act(() => {
-      userEvent.click(screen.getByTestId('angle_left'));
-    });
+    await waitFor(() => userEvent.click(screen.getByTestId('angle_left')));
 
     expect(screen.getByTestId('page_input')).toHaveValue('24');
     expect(onPageChangeFn).toHaveBeenCalledTimes(2);
     expect(onPageChangeFn).toHaveBeenCalledWith({ number: 24, size: 20 });
   });
 
-  it('should not change page when type inside input and not blur', () => {
+  it('should not change page when type inside input and not blur', async () => {
     const onPageChangeFn = jest.fn();
 
     render(<Pagination page={page} onPageChange={onPageChangeFn} />);
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
 
-    act(() => {
-      userEvent.type(screen.getByTestId('page_input'), '1');
-    });
+    await waitFor(() => userEvent.type(screen.getByTestId('page_input'), '1'));
 
     expect(screen.getByTestId('page_input')).toHaveValue('11');
     expect(onPageChangeFn).toHaveBeenCalledTimes(1);
@@ -139,13 +133,9 @@ describe('Pagination.test.tsx', () => {
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
 
-    act(() => {
-      userEvent.type(screen.getByTestId('page_input'), '1');
-    });
+    await waitFor(() => userEvent.type(screen.getByTestId('page_input'), '1'));
 
     fireEvent.blur(screen.getByTestId('page_input'));
-
-    await waitFor(() => expect(onPageChangeFn).toHaveBeenCalled());
 
     expect(screen.getByTestId('page_input')).toHaveValue('11');
     expect(onPageChangeFn).toHaveBeenCalledTimes(2);
@@ -159,13 +149,11 @@ describe('Pagination.test.tsx', () => {
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
 
-    act(() => {
-      userEvent.type(screen.getByTestId('page_input'), '1');
-    });
+    userEvent.type(screen.getByTestId('page_input'), '1');
 
-    userEvent.type(screen.getByTestId('page_input'), '{enter}');
-
-    await waitFor(() => expect(onPageChangeFn).toHaveBeenCalled());
+    await waitFor(() =>
+      userEvent.type(screen.getByTestId('page_input'), '{enter}')
+    );
 
     expect(screen.getByTestId('page_input')).toHaveValue('11');
     expect(onPageChangeFn).toHaveBeenCalledTimes(2);
@@ -182,11 +170,9 @@ describe('Pagination.test.tsx', () => {
     expect(onPageChangeFn).toHaveBeenCalledTimes(1);
     expect(onPageChangeFn).toHaveBeenCalledWith({ number: 1, size: 20 });
 
-    act(() => {
-      userEvent.selectOptions(screen.getByTestId('pageselector_options'), '50');
-    });
-
-    await waitFor(() => expect(onPageChangeFn).toHaveBeenCalled());
+    await waitFor(() =>
+      userEvent.selectOptions(screen.getByTestId('pageselector_options'), '50')
+    );
 
     expect(screen.getByTestId('page_input')).toHaveValue('1');
     expect(screen.getByTestId('pageselector_options')).toHaveValue('50');

@@ -1,4 +1,4 @@
-import { act, screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from 'utils/testing';
 
@@ -78,7 +78,7 @@ describe('Table.test.tsx', () => {
     expect(screen.getByTestId('Surname_1_sort')).toBeInTheDocument();
   });
 
-  it('should toggle sort icons on click in column icon', () => {
+  it('should toggle sort icons on click in column icon', async () => {
     const onSortFn = jest.fn();
 
     render(
@@ -100,22 +100,18 @@ describe('Table.test.tsx', () => {
       </Table>
     );
 
-    act(() => {
-      userEvent.click(screen.getByTestId('Name_0_sort'));
-    });
+    await waitFor(() => userEvent.click(screen.getByTestId('Name_0_sort')));
 
     expect(screen.getByTestId('Name_0_asc')).toBeInTheDocument();
     expect(onSortFn).toHaveBeenCalledWith('name', 'asc');
 
-    act(() => {
-      userEvent.click(screen.getByTestId('Name_0_asc'));
-    });
+    await waitFor(() => userEvent.click(screen.getByTestId('Name_0_asc')));
 
     expect(screen.getByTestId('Name_0_desc')).toBeInTheDocument();
     expect(onSortFn).toHaveBeenCalledWith('name', 'desc');
   });
 
-  it('should set previos clicked column icon to sort when click to sort another column', () => {
+  it('should set previos clicked column icon to sort when click to sort another column', async () => {
     const onSortFn = jest.fn();
 
     render(
@@ -137,16 +133,12 @@ describe('Table.test.tsx', () => {
       </Table>
     );
 
-    act(() => {
-      userEvent.click(screen.getByTestId('Name_0_sort'));
-    });
+    await waitFor(() => userEvent.click(screen.getByTestId('Name_0_sort')));
 
     expect(screen.getByTestId('Name_0_asc')).toBeInTheDocument();
     expect(onSortFn).toHaveBeenCalledWith('name', 'asc');
 
-    act(() => {
-      userEvent.click(screen.getByTestId('Surname_1_sort'));
-    });
+    await waitFor(() => userEvent.click(screen.getByTestId('Surname_1_sort')));
 
     expect(screen.getByTestId('Name_0_sort')).toBeInTheDocument();
     expect(screen.getByTestId('Surname_1_asc')).toBeInTheDocument();

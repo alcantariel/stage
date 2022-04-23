@@ -1,4 +1,4 @@
-import { act, screen } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from 'utils/testing';
 
@@ -161,7 +161,7 @@ describe('Notification.test.tsx', () => {
     expect(onDestroyFn).toHaveBeenCalled();
   });
 
-  it('should close notification when click on close icon', () => {
+  it('should close notification when click on close icon', async () => {
     const onDestroyFn = jest.fn();
     const value: NotificationValue = {
       id: '1',
@@ -175,7 +175,9 @@ describe('Notification.test.tsx', () => {
 
     expect(container).toBeInTheDocument();
 
-    userEvent.click(screen.getByTestId('1_close_notification_icon'));
+    await waitFor(() =>
+      userEvent.click(screen.getByTestId('1_close_notification_icon'))
+    );
 
     expect(container).not.toBeInTheDocument();
     expect(onDestroyFn).toHaveBeenCalled();

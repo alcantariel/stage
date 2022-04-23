@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NotificationValue } from 'components';
 import { useNotification } from 'hooks';
@@ -27,22 +27,22 @@ describe('NotificationProvider.test.tsx', () => {
     expect(noopAddNotificationResult).toEqual(undefined);
   });
 
-  it('should add success notification', () => {
+  it('should add success notification', async () => {
     render(<NotificationTestPage />);
 
     expect(screen.queryByText('Success notification!')).not.toBeInTheDocument();
 
-    userEvent.click(screen.getByText('Add notification'));
+    await waitFor(() => userEvent.click(screen.getByText('Add notification')));
 
     expect(screen.getByText('Success notification!')).toBeInTheDocument();
   });
 
-  it('should remove success notification', () => {
+  it('should remove success notification', async () => {
     render(<NotificationTestPage />);
 
     expect(screen.queryByText('Success notification!')).not.toBeInTheDocument();
 
-    userEvent.click(screen.getByText('Add notification'));
+    await waitFor(() => userEvent.click(screen.getByText('Add notification')));
 
     expect(screen.getByText('Success notification!')).toBeInTheDocument();
 

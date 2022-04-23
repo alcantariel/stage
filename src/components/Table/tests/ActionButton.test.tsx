@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { render } from 'utils/testing';
 
 import { ActionButton } from '../ActionButton';
 
@@ -11,7 +12,7 @@ describe('ActionButton.test.tsx', () => {
     expect(screen.getByTestId('action_button_icon_check')).toBeInTheDocument();
   });
 
-  it('should call action button click', () => {
+  it('should call action button click', async () => {
     const onClickFn = jest.fn();
 
     render(
@@ -20,7 +21,9 @@ describe('ActionButton.test.tsx', () => {
       </ActionButton>
     );
 
-    userEvent.click(screen.getByText('Click Me!').parentElement!);
+    await waitFor(() =>
+      userEvent.click(screen.getByText('Click Me!').parentElement!)
+    );
 
     expect(onClickFn).toHaveBeenCalled();
   });
